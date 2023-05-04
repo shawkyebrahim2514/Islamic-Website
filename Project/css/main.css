@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
+
+@font-face {
+  font-family: alQuranFont;
+  src: url(../font/ar-Othmani.ttf);
+}
+
+:root {
+  --orange-1: #b9864d;
+  --orange-2: #bf9759;
+  --orange-3: #fff3ea;
+  --light: #ffffff;
+  --dark: #170f05;
+  --border-radius: 12px;
+  --drop-shadow: drop-shadow(3px 3px 3px #170f052e);
+  --transition: all 0.3s ease-in-out;
+  --gradiant: linear-gradient(45deg, var(--orange-1), var(--orange-2));
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: "alQuranFont", sans-serif;
+}
+
+::selection {
+  background-color: var(--orange-1);
+  color: var(--light);
+}
+
+body {
+  color: var(--dark);
+}
+
+a {
+  text-decoration: none;
+  color: var(--light);
+}
+
+img {
+  width: 100%;
+}
+
+.container {
+  max-width: 1128px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+
+/* Style the btn */
+
+.btn {
+  display: inline-block;
+  background: var(--gradiant);
+  border-radius: var(--border-radius);
+  color: var(--light);
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1.2rem;
+  padding: 12px 22px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+/* Style the navbar */
+
+nav,
+footer {
+  background-color: #b9864d;
+  color: var(--light);
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav section.logo {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+nav ul.links {
+  list-style: none;
+  display: flex;
+}
+
+nav ul.links li {
+  --padding-x: 20px;
+  padding: var(--padding-x);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+
+nav ul.links li:hover {
+  background-color: rgb(255 255 255 / 15%);
+}
+
+/* Style the footer */
+
+footer {
+  padding: 10px 0;
+  font-size: 1.2rem;
+  text-align: center; 
+}
+
+footer a {
+    margin-right: 5px;
+}

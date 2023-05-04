@@ -1,0 +1,13 @@
+async function getAdhkar(name) {
+  try {
+    let response = await fetch(
+      `https://raw.githubusercontent.com/nawafalqari/azkar-api/56df51279ab6eb86dc2f6202c7de26c8948331c1/azkar.json`
+    );
+    let json = await response.json();
+    return json[name];
+  } catch (error) {
+    return new Error(error);
+  }
+}
+
+export { getAdhkar };
