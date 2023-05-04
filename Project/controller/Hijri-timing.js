@@ -1,19 +1,14 @@
 import { getGregorianHijriFullDateAndPrayersTime } from "../model/Hijri-calendar.js";
 
-function setHijriTiming(prayerTimes) {
-  let fullSectionDate = document.querySelector("main section.Hijri-timing");
-  for (let prayer in prayerTimes) {
-    let prayerTimesElements = document.createElement("div");
-    prayerTimesElements.classList.add("row");
-    prayerTimesElements.innerHTML = `
-      <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
-      <span>${prayerTimes[prayer]}</span>
-      `;
-    fullSectionDate.appendChild(prayerTimesElements);
-  }
+async function setHijriSectionContent() {
+  let gregorianHijriDate = await getGregorianHijriFullDateAndPrayersTime();
+  let currentDate = gregorianHijriDate.date;
+  let prayerTimes = gregorianHijriDate.prayersTime;
+  setHijriSectionFullDate(currentDate);
+  setHijriTimings(prayerTimes);
 }
 
-function setHijriSectionDate(currentDate) {
+function setHijriSectionFullDate(currentDate) {
   let fullSectionDate = document.querySelector(
     "main > section:has(section.Hijri-timing) h2"
   );
@@ -30,13 +25,17 @@ function setHijriSectionDate(currentDate) {
   fullSectionDate.innerHTML = `${GregorianDate} ${HijriDate.outerHTML}`;
 }
 
-
-async function setHijriSectionContent() {
-  let gregorianHijriDate = await getGregorianHijriFullDateAndPrayersTime();
-  let currentDate = gregorianHijriDate.date;
-  setHijriSectionDate(currentDate);
-  let prayerTimes = gregorianHijriDate.prayersTime;
-  setHijriTiming(prayerTimes);
+function setHijriTimings(prayerTimes) {
+  let fullSectionDate = document.querySelector("main section.Hijri-timing");
+  for (let prayer in prayerTimes) {
+    let prayerTimesElements = document.createElement("div");
+    prayerTimesElements.classList.add("row");
+    prayerTimesElements.innerHTML = `
+      <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
+      <span>${prayerTimes[prayer]}</span>
+      `;
+    fullSectionDate.appendChild(prayerTimesElements);
+  }
 }
 
 export { setHijriSectionContent };

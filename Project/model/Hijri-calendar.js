@@ -1,5 +1,5 @@
+// for full day date and prayers time
 async function fetchGregorianToHijriFullDate(date) {
-  if (!date) date = JSON.parse(sessionStorage.date);
   let fullDate = `${date.day}-${date.month}-${date.year}`;
   let location = JSON.parse(sessionStorage.userLocation);
   try {
@@ -13,24 +13,11 @@ async function fetchGregorianToHijriFullDate(date) {
   }
 }
 
-async function fetchGregorianToHijriMonthDate() {
-  let date = JSON.parse(sessionStorage.HijriCalnderPageDate);
+async function getGregorianHijriFullDate(date) {
+  if (!date) date = JSON.parse(sessionStorage.date);
   console.log("date", date);
-  let monthYearDate = `${date.month}/${date.year}`;
-  console.log("rerfe", monthYearDate);
-  try {
-    let response = await fetch(
-      `http://api.aladhan.com/v1/gToHCalendar/${monthYearDate}`
-    );
-    let json = await response.json();
-    return json.data;
-  } catch (error) {
-    return new Error(error);
-  }
-}
-
-async function getGregorianHijriFullDate() {
-  let gregorianHijriDate = await fetchGregorianToHijriFullDate();
+  let gregorianHijriDate = await fetchGregorianToHijriFullDate(date);
+  console.log("gregorianHijriDate", gregorianHijriDate);
   return {
     gregorian: {
       weekday: gregorianHijriDate.date.gregorian.weekday.en,
@@ -49,8 +36,9 @@ async function getGregorianHijriFullDate() {
   };
 }
 
-async function getPrayersTime() {
-  let prayersTime = await fetchGregorianToHijriFullDate();
+async function getPrayersTime(date) {
+  if (!date) date = JSON.parse(sessionStorage.date);
+  let prayersTime = await fetchGregorianToHijriFullDate(date);
   return {
     Fajr: prayersTime.timings.Fajr,
     Dhuhr: prayersTime.timings.Dhuhr,
@@ -60,8 +48,9 @@ async function getPrayersTime() {
   };
 }
 
-async function getGregorianHijriFullDateAndPrayersTime() {
-  let gregorianToHijri = await fetchGregorianToHijriFullDate();
+async function getGregorianHijriFullDateAndPrayersTime(date) {
+  if (!date) date = JSON.parse(sessionStorage.date);
+  let gregorianToHijri = await fetchGregorianToHijriFullDate(date);
   return {
     date: {
       gregorian: {
@@ -89,9 +78,29 @@ async function getGregorianHijriFullDateAndPrayersTime() {
   };
 }
 
+// for month and year
+
+async function fetchGregorianToHijriMonthDate(monthYearDate) {
+  try {
+    let response = await fetch(
+      `http://api.aladhan.com/v1/gToHCalendar/${monthYearDate}`
+    );
+    let json = await response.json();
+    return json.data;
+  } catch (error) {
+    return new Error(error);
+  }
+}
+
+async function getGregorianToHijriMonthDate() {
+  let date = JSON.parse(sessionStorage.HijriCalnderPageDate);
+  let monthYearDate = `${date.month}/${date.year}`;
+  return fetchGregorianToHijriMonthDate(monthYearDate);
+}
+
 export {
   getGregorianHijriFullDate,
   getPrayersTime,
   getGregorianHijriFullDateAndPrayersTime,
-  fetchGregorianToHijriMonthDate,
+  getGregorianToHijriMonthDate,
 };

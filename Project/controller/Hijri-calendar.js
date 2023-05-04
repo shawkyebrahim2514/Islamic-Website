@@ -1,5 +1,8 @@
 import { setHijriSectionContent } from "./Hijri-timing.js";
-import { fetchGregorianToHijriMonthDate } from "../model/Hijri-calendar.js";
+import {
+  getGregorianToHijriMonthDate,
+  getGregorianHijriFullDate,
+} from "../model/Hijri-calendar.js";
 
 let dateInput = document.querySelector("input");
 
@@ -35,7 +38,7 @@ function updateHijriCalnderPageDate(newValue) {
 }
 
 async function updateDayCards(daysContent) {
-  let days = await fetchGregorianToHijriMonthDate();
+  let days = await getGregorianToHijriMonthDate();
   daysContent.previousElementSibling.textContent = `${days[0].gregorian.month.en} ${days[0].gregorian.year}`;
   for (let day of days) {
     let dayElement = createNewCardDay(day);
@@ -52,7 +55,15 @@ function createNewCardDay(day) {
   <p>${day.hijri.day} ${day.hijri.month.ar} ${day.hijri.year}</p>
   <p>${day.gregorian.day} ${day.gregorian.month.en} ${day.gregorian.year}</p>
   `;
+  addDayElementEventListener(dayElement);
   return dayElement;
+}
+
+function addDayElementEventListener(dayElement) {
+  dayElement.addEventListener("click", () => {
+    let day = dayElement.getAttribute("data-day");
+    let result = fetchGreg;
+  });
 }
 
 // Add event listener to controllers
