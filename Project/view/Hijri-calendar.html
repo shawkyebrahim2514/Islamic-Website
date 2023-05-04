@@ -6,19 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css" />
+    <link rel="stylesheet" href="../css/Hijri-timing.css" />
     <link rel="stylesheet" href="../css/Hijri-calendar.css" />
     <link rel="stylesheet" href="../css/all.min.css" />
   </head>
   <body>
     <main>
       <section>
-        <h2>Date Here</h2>
-        <section class="timing">
-          <div class="row">
-            <span>Salah</span>
-            <span>Time</span>
+        <div class="container">
+          <h2></h2>
+          <section class="Hijri-timing">
+            <div class="row">
+              <span>Salah</span>
+              <span>Time</span>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section>
+        <div class="container">
+          <h3>Gregorion date to Hijri</h3>
+          <input type="month"/>
+        </div>
+      </section>
+      <section>
+        <div class="container">
+          <h2>Date Here</h2>
+          <div class="content">
+            
           </div>
-        </section>
+          <div class="controllers">
+            <i class="previous fa-regular fa-circle-left"></i>
+            <i class="next fa-regular fa-circle-right"></i>
+          </div>
+        </div>
       </section>
     </main>
     <script src="../js/main.js" type="module"></script>

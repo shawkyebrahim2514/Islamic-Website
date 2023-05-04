@@ -1,0 +1,106 @@
+section.Hijri-timing {
+    width: 45%;
+}
+
+section:has(input) .container {
+  display: flex;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+input {
+  width: 55%;
+  margin-left: 25px;
+  border-radius: var(--border-radius);
+  padding: 0 20px;
+  font-size: 1.2rem;
+}
+
+section:has(input) + section h2 {
+  color: var(--orange-1);
+  position: relative;
+}
+
+section:has(input) + section .content {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+section:has(input) + section h2::before,
+section:has(input) + section h2::after {
+  content: "";
+  position: absolute;
+  width: 20%;
+  height: 2px;
+  top: 50%;
+  background-color: var(--orange-1);
+}
+
+section:has(input) + section h2::before {
+  left: calc(50% + 120px);
+}
+
+section:has(input) + section h2::after {
+  right: calc(50% + 120px);
+}
+
+.card {
+  counter-increment: cardCounter;
+  background-color: var(--orange-3);
+  padding: 20px 35px;
+  border-radius: var(--border-radius);
+  filter: var(--drop-shadow);
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+  text-align: center;
+  width: 216px;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card::before {
+  content: counter(cardCounter);
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: var(--orange-1);
+  color: var(--orange-3);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card p:first-child {
+  font-weight: bold;
+  color: var(--orange-1);
+}
+
+.card p:nth-child(2) {
+  direction: rtl;
+}
+
+.controllers {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  font-size: 2.2rem;
+  color: var(--orange-1);
+  gap: 40px;
+}
+
+.controllers i {
+  display: inline-block;
+  cursor: pointer;
+}
+
+input::selection {
+    background-color: red;
+}

@@ -1,15 +1,16 @@
 // Define the main components
+
 function createNavbar() {
   const nav = document.createElement("nav");
   nav.innerHTML = `
       <div class="container">
         <section class="logo">Muslim</section>
         <ul class="links">
-          <li><a href="#">Home</a></li>
-          <li><a href="#">Hijri Calendar</a></li>
-          <li><a href="#">Holy Quran</a></li>
-          <li><a href="#">Ahadith</a></li>
-          <li><a href="#">Adhkar</a></li>
+          <li><a href="/view/index.html">Home</a></li>
+          <li><a href="/view/Hijri-calendar.html">Hijri Calendar</a></li>
+          <li><a href="/view/Holy-Quran.html">Holy Quran</a></li>
+          <li><a href="/view/ahadith.html">Ahadith</a></li>
+          <li><a href="/view/adhkar.html">Adhkar</a></li>
         </ul>
       </div>
     `;
@@ -41,4 +42,15 @@ function createFooter() {
   return footer;
 }
 
-export { createNavbar, createFooter };
+function createOverlay() {
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  overlay.innerHTML = `
+  <div class="loading-spinner"><div class="spinner">
+<div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+</div></div>
+  `;
+  return overlay;
+}
+
+export { createNavbar, createFooter, createOverlay };
