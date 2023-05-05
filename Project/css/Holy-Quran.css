@@ -1,11 +1,16 @@
 section.quran-player {
-  background-color: #eee;
+  /* background-color: #eee; */
   text-align: center;
 }
 
 section.quran-player > .container {
   border: 2px solid var(--dark);
-  border-radius: var(--border-radius);
+  margin: 10px auto;
+  padding: 0;
+  width: 96%;
+}
+
+section.quran-player > .container > *:not(:last-child) {
   padding: 10px 20px;
 }
 
@@ -28,16 +33,16 @@ section.quran-player header select {
 }
 
 section.quran-player section.quran-text {
-    /* background-color: red; */
-    font-size: 1.8rem;
-    margin-top: 20px;
+  /* background-color: red; */
+  font-size: 1.8rem;
+  margin-top: 20px;
 }
 
 .controllers {
-    font-size: 1.8rem;
-    justify-content: space-between;
+  font-size: 1.8rem;
+  justify-content: space-between;
 }
 
 audio {
-    width: 60%;
+  width: 60%;
 }

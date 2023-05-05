@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/Holy-Quran.css" />
+    <link rel="stylesheet" href="../css/audio-player.css" />
     <link rel="stylesheet" href="../css/all.min.css" />
   </head>
   <body>
@@ -15,7 +16,6 @@
         <div class="container">
           <header>
             <h3>Surah name</h3>
-            <!-- create a slider -->
             <div class="change-font-size">
               <p for="quran-font">Change font size</p>
               <input
@@ -63,14 +63,36 @@
                 <span>Page1</span>
                 <i class="next fa-regular fa-circle-right"></i>
               </div>
-              <audio controls="controls" src="https:\/\/cdn.islamic.network\/quran\/audio\/64\/ar.alafasy\/6232.mp3">
-              </audio>
             </div>
           </footer>
+          <div class="audio-player" style="margin: 0 auto">
+            <div class="timeline">
+              <div class="progress"></div>
+            </div>
+            <div class="controls">
+              <div class="play-container">
+                <div class="toggle-play play"></div>
+              </div>
+              <div class="time">
+                <div class="current">0:00</div>
+                <div class="divider">/</div>
+                <div class="length"></div>
+              </div>
+              <div class="volume-container">
+                <div class="volume-button">
+                  <i class="fa-solid fa-volume-high"></i>
+                </div>
+                <div class="volume-slider">
+                  <div class="volume-percentage"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
     <script src="../js/main.js" type="module"></script>
+    <script src="../js/audio-player.js" type="module"></script>
     <script src="../controller/Holy-Quran.js" type="module"></script>
   </body>
 </html>
