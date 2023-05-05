@@ -1,7 +1,8 @@
 import { setHijriSectionContent } from "./Hijri-timing.js";
 import {
-  getGregorianToHijriMonthDate,
+  getGregorianHijriFullDateAndPrayersTime,
   getGregorianHijriFullDate,
+  getGregorianToHijriMonthDate,
 } from "../model/Hijri-calendar.js";
 
 let dateInput = document.querySelector("input");
@@ -60,11 +61,49 @@ function createNewCardDay(day) {
 }
 
 function addDayElementEventListener(dayElement) {
-  dayElement.addEventListener("click", () => {
-    let day = dayElement.getAttribute("data-day");
-    let result = fetchGreg;
+  dayElement.addEventListener("click", async () => {
+    let dayAttachedWithElement = dayElement.getAttribute("data-day");
+    let day = dayAttachedWithElement.split("-")[0];
+    let month = dayAttachedWithElement.split("-")[1];
+    let year = dayAttachedWithElement.split("-")[2];
+    let fullDate = await getGregorianHijriFullDateAndPrayersTime({day, month, year});
+    updateGregorianHijrioverlay(fullDate);
   });
 }
+
+function updateGregorianHijrioverlay(fullDate) {
+  document.querySelector(".Gregorian-Hijri-overlay").style.display = "block";
+  let gregorianField = document.querySelector(
+    ".Gregorian-Hijri-overlay .container div:first-of-type p"
+  );
+  let hijriField = document.querySelector(
+    ".Gregorian-Hijri-overlay .container div:nth-of-type(2) p"
+  );
+  let prayerTimings = document.querySelector(
+    ".Gregorian-Hijri-overlay .container div:nth-of-type(3) .timing-rows"
+  );
+  gregorianField.textContent = `${fullDate.date.gregorian.weekday}, ${fullDate.date.gregorian.day} ${fullDate.date.gregorian.month.en} ${fullDate.date.gregorian.year}`;
+  hijriField.textContent = `${fullDate.date.hijri.weekday}, ${fullDate.date.hijri.day} ${fullDate.date.hijri.month.en} ${fullDate.date.hijri.year}`;
+  removeAllChildren(prayerTimings);
+  for (let prayer in fullDate.prayerTimings) {
+    let prayerRow = document.createElement("p");
+    prayerRow.classList.add("row");
+    prayerRow.innerHTML = `
+    <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
+    <span>${fullDate.prayerTimings[prayer]}</span>`;
+    prayerTimings.appendChild(prayerRow);
+  }
+}
+
+let gregorianHijriOverlay = document.querySelector(".Gregorian-Hijri-overlay");
+gregorianHijriOverlay.addEventListener("click", (event) => {
+  let gregorianHijriContent = document.querySelector(
+    ".Gregorian-Hijri-overlay .container"
+  );
+  if (!gregorianHijriContent.contains(event.target)) {
+    event.target.style.display = "none";
+  }
+});
 
 // Add event listener to controllers
 

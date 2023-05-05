@@ -7,6 +7,7 @@ async function fetchGregorianToHijriFullDate(date) {
       `http://api.aladhan.com/v1/timings/${fullDate}?latitude=${location.latitude}&longitude=${location.longitude}&method=5`
     );
     let json = await response.json();
+    console.log(json);
     return json.data;
   } catch (error) {
     return new Error(error);
@@ -15,18 +16,17 @@ async function fetchGregorianToHijriFullDate(date) {
 
 async function getGregorianHijriFullDate(date) {
   if (!date) date = JSON.parse(sessionStorage.date);
-  console.log("date", date);
   let gregorianHijriDate = await fetchGregorianToHijriFullDate(date);
-  console.log("gregorianHijriDate", gregorianHijriDate);
   return {
     gregorian: {
-      weekday: gregorianHijriDate.date.gregorian.weekday.en,
       day: gregorianHijriDate.date.gregorian.day,
-      month: gregorianHijriDate.date.gregorian.month.en,
+      weekday: gregorianHijriDate.date.gregorian.weekday.en,
+      month: gregorianHijriDate.date.gregorian.month,
       year: gregorianHijriDate.date.gregorian.year,
     },
     hijri: {
       day: gregorianHijriDate.date.hijri.day,
+      weekday: gregorianToHijri.date.hijri.weekday.ar,
       month: {
         en: gregorianHijriDate.date.hijri.month.en,
         ar: gregorianHijriDate.date.hijri.month.ar,
@@ -38,13 +38,13 @@ async function getGregorianHijriFullDate(date) {
 
 async function getPrayersTime(date) {
   if (!date) date = JSON.parse(sessionStorage.date);
-  let prayersTime = await fetchGregorianToHijriFullDate(date);
+  let prayerTimings = await fetchGregorianToHijriFullDate(date);
   return {
-    Fajr: prayersTime.timings.Fajr,
-    Dhuhr: prayersTime.timings.Dhuhr,
-    Asr: prayersTime.timings.Asr,
-    Maghrib: prayersTime.timings.Maghrib,
-    Isha: prayersTime.timings.Isha,
+    Fajr: prayerTimings.timings.Fajr,
+    Dhuhr: prayerTimings.timings.Dhuhr,
+    Asr: prayerTimings.timings.Asr,
+    Maghrib: prayerTimings.timings.Maghrib,
+    Isha: prayerTimings.timings.Isha,
   };
 }
 
@@ -54,21 +54,19 @@ async function getGregorianHijriFullDateAndPrayersTime(date) {
   return {
     date: {
       gregorian: {
-        weekday: gregorianToHijri.date.gregorian.weekday.en,
         day: gregorianToHijri.date.gregorian.day,
-        month: gregorianToHijri.date.gregorian.month.en,
+        weekday: gregorianToHijri.date.gregorian.weekday.en,
+        month: gregorianToHijri.date.gregorian.month,
         year: gregorianToHijri.date.gregorian.year,
       },
       hijri: {
         day: gregorianToHijri.date.hijri.day,
-        month: {
-          en: gregorianToHijri.date.hijri.month.en,
-          ar: gregorianToHijri.date.hijri.month.ar,
-        },
+        weekday: gregorianToHijri.date.hijri.weekday.ar,
+        month: gregorianToHijri.date.hijri.month,
         year: gregorianToHijri.date.hijri.year,
       },
     },
-    prayersTime: {
+    prayerTimings: {
       Fajr: gregorianToHijri.timings.Fajr,
       Dhuhr: gregorianToHijri.timings.Dhuhr,
       Asr: gregorianToHijri.timings.Asr,
