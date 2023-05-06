@@ -8,10 +8,10 @@ async function getQuranInfo() {
   }
 }
 
-async function getSurahAndTranslation(numberOfSurah) {
+async function getSurahAndTranslation(surahNumber) {
   try {
     const response = await fetch(
-      `https://quranenc.com/api/v1/translation/sura/arabic_moyassar/${numberOfSurah}`
+      `https://quranenc.com/api/v1/translation/sura/arabic_moyassar/${surahNumber}`
     );
     const json = await response.json();
     return json.result;
@@ -20,10 +20,10 @@ async function getSurahAndTranslation(numberOfSurah) {
   }
 }
 
-async function getAyahAudio(numberOfAyah) {
+async function getAyahAudio(ayahNumber) {
   try {
     const response = await fetch(
-      `http://api.alquran.cloud/v1/ayah/${numberOfAyah}/ar.alafasy`
+      `http://api.alquran.cloud/v1/ayah/${ayahNumber}/ar.alafasy`
     );
     const json = await response.json();
     return json.data;
@@ -32,10 +32,10 @@ async function getAyahAudio(numberOfAyah) {
   }
 }
 
-async function getPageAyahs(numberOfPage) {
+async function getPageAyahs(pageNumber) {
   try {
     const response = await fetch(
-      `http://api.alquran.cloud/v1/page/${numberOfPage}/quran-uthmani`
+      `http://api.alquran.cloud/v1/page/${pageNumber}/quran-uthmani`
     );
     const json = await response.json();
     return json.data;
@@ -44,10 +44,10 @@ async function getPageAyahs(numberOfPage) {
   }
 }
 
-async function getAyahAndTranslation(numberOfSurah, numberOfAyahInSurah) {
+async function getAyahAndTranslation(surahNumber, numberOfAyahInSurah) {
   try {
     const response = await fetch(
-      `https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${numberOfSurah}/${numberOfAyahInSurah}`
+      `https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${surahNumber}/${numberOfAyahInSurah}`
     );
     const json = await response.json();
     return json.result;

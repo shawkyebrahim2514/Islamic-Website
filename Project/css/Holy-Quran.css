@@ -1,5 +1,4 @@
 section.quran-player {
-  /* background-color: #eee; */
   text-align: center;
 }
 
@@ -8,41 +7,79 @@ section.quran-player > .container {
   margin: 10px auto;
   padding: 0;
   width: 96%;
-}
-
-section.quran-player > .container > *:not(:last-child) {
-  padding: 10px 20px;
+  display: grid;
+  gap: 20px;
 }
 
 section.quran-player header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-}
-
-section.quran-player header h3 {
-  color: var(--orange-1);
-  font-size: 1.5rem;
+  padding: 10px 0;
+  background-color: var(--dark);
 }
 
 section.quran-player header select {
-  padding: 0 20px;
+  padding: 0 40px;
   border-radius: var(--border-radius);
-  border: 1px solid var(--dark);
   font-size: 1rem;
 }
 
 section.quran-player section.quran-text {
-  /* background-color: red; */
   font-size: 1.8rem;
-  margin-top: 20px;
+  direction: rtl;
+  padding: 0 10px;
+}
+
+section.quran-player section.quran-text p.ayah-text {
+  display: inline;
+  cursor: pointer;
+}
+
+section.quran-player section.quran-text p.ayah-text:hover {
+  background-color: #eee;
+}
+
+section.quran-player section.quran-text p.ayah-text.active {
+  background-color: var(--orange-1);
+  color: var(--light);
+}
+
+section.quran-player section.quran-text p.ayah-text span.ayah-number {
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  width: 32px;
+  align-items: center;
+  height: 32px;
+  font-size: 1rem;
+  border: 2px solid var(--dark);
+  position: relative;
+  top: -3px;
+  font-weight: bold;
+}
+
+section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
+  background-color: var(--orange-1);
+  color: var(--light);
+  border: 2px solid var(--light);
+}
+
+section.quran-player section.quran-text p.ayah-text::before {
+  content: "\00a0";
 }
 
 .controllers {
   font-size: 1.8rem;
   justify-content: space-between;
+  margin-top: 0;
+  color: #444;
 }
 
-audio {
-  width: 60%;
+.quran-player footer {
+  padding: 0;
+}
+
+.quran-player .quran-text .basmala:not(:first-child) {
+  margin-top: 20px;
 }

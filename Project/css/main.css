@@ -13,7 +13,7 @@
   --orange-2: #bf9759;
   --orange-3: #fff3ea;
   --light: #ffffff;
-  --dark: #170f05;
+  --dark: #444;
   --border-radius: 12px;
   --drop-shadow: drop-shadow(3px 3px 3px #170f052e);
   --transition: all 0.3s ease-in-out;
@@ -140,7 +140,7 @@ footer a {
 /* Style of sections */
 
 .container {
-  max-width: 1221px;
+  max-width: 1245px;
   margin: 0 auto;
   padding: 0 10px;
 }
@@ -178,7 +178,15 @@ main > section > .container > h2 {
   margin-top: 40px;
   font-size: 2.2rem;
   color: var(--orange-1);
-  gap: 40px;
+  gap: 5px;
+  flex-direction: column;
+}
+
+.controllers .prev-next-controller {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
 }
 
 .controllers i {
