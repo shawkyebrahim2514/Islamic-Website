@@ -189,6 +189,10 @@ main > section > .container > h2 {
   gap: 30px;
 }
 
+.controllers .prev-next-controller span {
+  font-size: 1.4rem;
+}
+
 .controllers i {
   display: inline-block;
   cursor: pointer;

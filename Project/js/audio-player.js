@@ -4,7 +4,7 @@ const audioPlayer = document.querySelector(".audio-player");
 const playBtn = audioPlayer.querySelector(".controls .toggle-play");
 
 let audio = new Audio(
-  "https://ia800905.us.archive.org/19/items/FREE_background_music_dhalius/backsound.mp3"
+  "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3"
 );
 
 export function changeAudio(url) {
@@ -82,6 +82,13 @@ playBtn.addEventListener(
   },
   false
 );
+
+// add event listener to play button when press space
+document.addEventListener("keydown", function (e) {
+  if (e.code == "Space") {
+    playBtn.click();
+  }
+});
 
 audioPlayer.querySelector(".volume-button").addEventListener("click", () => {
   const volumeEl = audioPlayer.querySelector(".volume-container .volume");

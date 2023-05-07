@@ -44,10 +44,10 @@ async function getPageAyahs(pageNumber) {
   }
 }
 
-async function getAyahAndTranslation(surahNumber, numberOfAyahInSurah) {
+async function getAyahAndTranslation(surahNumber, ayahNumberInSurah) {
   try {
     const response = await fetch(
-      `https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${surahNumber}/${numberOfAyahInSurah}`
+      `https://quranenc.com/api/v1/translation/aya/arabic_moyassar/${surahNumber}/${ayahNumberInSurah}`
     );
     const json = await response.json();
     return json.result;

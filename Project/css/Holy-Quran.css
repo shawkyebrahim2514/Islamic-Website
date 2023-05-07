@@ -15,14 +15,24 @@ section.quran-player header {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 0;
+  gap: 10px;
+  flex-direction: column;
   background-color: var(--dark);
 }
 
-section.quran-player header select {
+section.quran-player header section.selections select {
   padding: 0 40px;
   border-radius: var(--border-radius);
   font-size: 1rem;
+}
+
+section.quran-player header section.quran-text-surahs {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.3rem;
+  background: #e5e5e5;
+  width: 100%;
 }
 
 section.quran-player section.quran-text {
@@ -45,7 +55,7 @@ section.quran-player section.quran-text p.ayah-text.active {
   color: var(--light);
 }
 
-section.quran-player section.quran-text p.ayah-text span.ayah-number {
+span.ayah-number {
   border-radius: 50%;
   display: inline-flex;
   justify-content: center;
@@ -82,4 +92,25 @@ section.quran-player section.quran-text p.ayah-text::before {
 
 .quran-player .quran-text .basmala:not(:first-child) {
   margin-top: 20px;
+}
+
+section.tafsir .container {
+  display: grid;
+  gap: 15px;
+  direction: rtl;
+}
+
+section.tafsir header {
+  text-align: center;
+  color: var(--orange-1);
+  border-bottom: 1px solid var(--orange-1);
+}
+
+section.tafsir header span.ayah-number {
+  border-color: var(--orange-1);
+}
+
+section.tafsir section.tafsir-text {
+  text-align: right;
+  font-size: 1.4rem;
 }
