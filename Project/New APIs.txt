@@ -1,2 +1,0 @@
-To know all quran shaikhs
-https://api.alquran.cloud/v1/edition?format=audio&language=ar&type=versebyverse

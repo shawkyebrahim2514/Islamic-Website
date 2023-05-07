@@ -1,5 +1,9 @@
 /* Style of the header */
 
+main {
+  margin-top: 0;
+}
+
 header {
   background-image: url("../image/header-image1.jpg");
   background-size: cover;

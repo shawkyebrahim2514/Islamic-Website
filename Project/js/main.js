@@ -62,12 +62,14 @@ if(!sessionStorage.adhkar) {
 
 
 // Define the main component
-const overlay = createOverlay();
-document.body.prepend(overlay);
 
 //prepend the navabar to the body
 const navbar = createNavbar();
 document.body.prepend(navbar);
+
+//append the overlay to the body
+const overlay = createOverlay();
+document.body.append(overlay);
 
 //append the footer to the body
 const footer = createFooter();

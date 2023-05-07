@@ -1,7 +1,6 @@
 import { setHijriSectionContent } from "./Hijri-timing.js";
 import {
   getGregorianHijriFullDateAndPrayersTime,
-  getGregorianHijriFullDate,
   getGregorianToHijriMonthDate,
 } from "../model/Hijri-calendar.js";
 

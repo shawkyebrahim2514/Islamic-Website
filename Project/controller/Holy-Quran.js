@@ -6,6 +6,7 @@ import {
   getQuranInfo,
 } from "../model/Holy-Quran.js";
 import { getBasmalaSVG } from "../model/Holy-Quran.js";
+import { getQuranKaremSVG } from "../js/svg-elements.js";
 
 async function setQuranPlayer() {
   let quranInfo = await getQuranInfo();
@@ -62,7 +63,7 @@ async function setQuranText(quranAyahs) {
     let basmala = checkBeginningBasmala(ayahNumberInSurah, ayahPageNumber);
     if (basmala) {
       quranAyahsContainer.appendChild(basmala);
-      ayahText = ayahText.slice(38);
+      ayah.text = ayah.text.slice(38);
     }
     let newAyah = createNewAyah(ayah);
     quranAyahsContainer.appendChild(newAyah);
@@ -92,7 +93,8 @@ function createNewAyah(ayah) {
   newAyah.setAttribute("data-surah-number", surahNumber);
   newAyah.setAttribute("data-page-number", ayahPageNumber);
   newAyah.setAttribute("data-ayah-in-surah-number", ayahNumberInSurah);
-  newAyah.innerHTML = `${ayahText} <span class="ayah-number">${ayahNumberInSurah}</span> `;
+  newAyah.innerHTML = `${ayahText} <span class="ayah-symbol-number">
+  &#1757;<span class="ayah-number">${ayahNumberInSurah}</span></span> `;
   addAyahClickEventListener(newAyah);
   return newAyah;
 }
@@ -143,7 +145,8 @@ async function updateTafsirSection(surahNumber, ayahNumberInSurah) {
   let tafsirSection = document.querySelector("section.tafsir");
   tafsirSection.querySelector(
     "header .ayah-text"
-  ).innerHTML = `${ayahTranslation.arabic_text} <span class="ayah-number">${ayahNumberInSurah}</span>`;
+  ).innerHTML = `${ayahTranslation.arabic_text} <span class="ayah-symbol-number">
+  &#1757;<span class="ayah-number">${ayahNumberInSurah}</span></span>`;
   tafsirSection.querySelector("section.tafsir-text p").textContent =
     ayahTranslation.translation;
 }
@@ -194,4 +197,5 @@ export function nextAyah() {
 
 await setQuranPlayer();
 await updateTafsirSection(1, 1);
+document.querySelector("header").innerHTML = getQuranKaremSVG("250px");
 document.querySelector(".overlay").style.display = "none";

@@ -1,4 +1,4 @@
-section.quran-player {
+body {
   text-align: center;
 }
 
@@ -22,7 +22,8 @@ section.quran-player header {
 }
 
 section.quran-player header section.selections select {
-  padding: 0 40px;
+  padding: 5px 0;
+  text-align: center;
   border-radius: var(--border-radius);
   font-size: 1rem;
 }
@@ -33,6 +34,7 @@ section.quran-player header section.quran-text-surahs {
   font-size: 1.3rem;
   background: #e5e5e5;
   width: 100%;
+  padding: 5px 0;
 }
 
 section.quran-player section.quran-text {
@@ -44,6 +46,8 @@ section.quran-player section.quran-text {
 section.quran-player section.quran-text p.ayah-text {
   display: inline;
   cursor: pointer;
+  padding: 5px 0;
+  line-height: 48px;
 }
 
 section.quran-player section.quran-text p.ayah-text:hover {
@@ -55,7 +59,7 @@ section.quran-player section.quran-text p.ayah-text.active {
   color: var(--light);
 }
 
-span.ayah-number {
+/* span.ayah-number {
   border-radius: 50%;
   display: inline-flex;
   justify-content: center;
@@ -67,12 +71,28 @@ span.ayah-number {
   position: relative;
   top: -3px;
   font-weight: bold;
+} */
+
+span.ayah-symbol-number {
+  font-family: auto;
+  font-size: 2.1rem;
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+span.ayah-number {
+  font-size: 1rem;
+  position: absolute;
+  top: calc(50% - 1px);
+  font-weight: bold;
+  display: inline;
+  line-height: 0;
 }
 
 section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
-  background-color: var(--orange-1);
   color: var(--light);
-  border: 2px solid var(--light);
 }
 
 section.quran-player section.quran-text p.ayah-text::before {
@@ -94,6 +114,10 @@ section.quran-player section.quran-text p.ayah-text::before {
   margin-top: 20px;
 }
 
+.controllers .prev-next-controller {
+  margin-bottom: 10px;
+}
+
 section.tafsir .container {
   display: grid;
   gap: 15px;
@@ -101,9 +125,7 @@ section.tafsir .container {
 }
 
 section.tafsir header {
-  text-align: center;
   color: var(--orange-1);
-  border-bottom: 1px solid var(--orange-1);
 }
 
 section.tafsir header span.ayah-number {
@@ -111,6 +133,5 @@ section.tafsir header span.ayah-number {
 }
 
 section.tafsir section.tafsir-text {
-  text-align: right;
   font-size: 1.4rem;
 }

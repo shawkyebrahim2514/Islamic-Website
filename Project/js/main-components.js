@@ -6,11 +6,11 @@ function createNavbar() {
       <div class="container">
         <section class="logo">Muslim</section>
         <ul class="links">
-          <li><a href="/view/index.html">Home</a></li>
-          <li><a href="/view/Hijri-calendar.html">Hijri Calendar</a></li>
-          <li><a href="/view/Holy-Quran.html">Holy Quran</a></li>
-          <li><a href="/view/ahadith.html">Ahadith</a></li>
-          <li><a href="/view/adhkar.html">Adhkar</a></li>
+          <a href="/view/index.html"><li>Home</li></a>
+          <a href="/view/Hijri-calendar.html"><li>Hijri Calendar</li></a>
+          <a href="/view/Holy-Quran.html"><li>Holy Quran</li></a>
+          <a href="/view/ahadith.html"><li>Ahadith</li></a>
+          <a href="/view/adhkar.html"><li>Adhkar</li></a>
         </ul>
       </div>
     `;

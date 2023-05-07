@@ -24,7 +24,8 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  font-family: "alQuranFont", sans-serif;
+  font-family: "system-ui", sans-serif;
+  /* font-family: "alQuranFont", sans-serif; */
 }
 
 ::selection {
@@ -149,8 +150,8 @@ main > section {
   padding: 2rem 0;
 }
 
-main > section:first-child {
-  padding-top: 80px;
+nav + * {
+  margin-top: 100px;
 }
 
 main > section:nth-of-type(2n) {
