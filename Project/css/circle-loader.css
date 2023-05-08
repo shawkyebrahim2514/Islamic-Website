@@ -1,0 +1,30 @@
+.loader {
+  width: calc(var(--size) - 5px);
+  height: calc(var(--size) - 5px);
+  border: 5px solid #e2e2e2;
+  border-bottom-color: var(--dark);
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+div:has(> .loader) {
+  --size: 50px;
+  width: var(--size);
+  height: var(--size);
+  display: inline-block;
+  background-color: var(--light);
+  filter: var(--drop-shadow);
+  position: relative;
+  border-radius: 50%;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -46,7 +46,7 @@ section:has(input) + section h2::after {
   right: calc(50% + 120px);
 }
 
-.card {
+/* .card {
   counter-increment: cardCounter;
   background-color: var(--orange-3);
   padding: 20px 35px;
@@ -61,7 +61,7 @@ section:has(input) + section h2::after {
 
 .card:hover {
   transform: scale(1.05);
-}
+} */
 
 .card::before {
   content: counter(cardCounter);

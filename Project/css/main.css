@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;1000&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap");
-@import url("./loading-spinner.css");
+@import url("./fade-loader.css");
+@import url("./circle-loader.css");
 
 @font-face {
   font-family: alQuranFont;
@@ -18,6 +19,9 @@
   --drop-shadow: drop-shadow(3px 3px 3px #170f052e);
   --transition: all 0.3s ease-in-out;
   --gradiant: linear-gradient(45deg, var(--orange-1), var(--orange-2));
+}
+
+html {
   scroll-behavior: smooth;
 }
 
@@ -47,6 +51,24 @@ img {
   filter: var(--drop-shadow);
   max-width: 400px;
   border-radius: var(--border-radius);
+}
+
+/* Style of cards */
+.card {
+  counter-increment: cardCounter;
+  background-color: var(--orange-3);
+  padding: 20px 35px;
+  border-radius: var(--border-radius);
+  filter: var(--drop-shadow);
+  position: relative;
+  transition: var(--transition);
+  cursor: pointer;
+  text-align: center;
+  width: 216px;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 /* Style the btn */
@@ -80,6 +102,28 @@ img {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+/* Style of the up arrow */
+
+.scroll-to-top {
+  --size: 50px;
+  position: fixed;
+  bottom: calc(-1 * var(--size));
+  right: 20px;
+  z-index: 10;
+  background-color: var(--orange-1);
+  color: var(--light);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  font-size: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  filter: var(--drop-shadow);
+  transition: var(--transition);
 }
 
 /* Style the navbar */

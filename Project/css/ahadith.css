@@ -1,0 +1,41 @@
+section.ahadith-narrators, .more-btn, section.loading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+header {
+    border-bottom: 2px solid var(--dark);
+}
+
+
+header, .header-image {
+    padding-bottom: 2rem;
+    text-align: center;
+}
+
+section.ahadith-narrators {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+main > section {
+    padding: 1rem 2rem;
+    text-align: center;
+    display: grid;
+    gap: 1rem;
+}
+
+main > section .hadith-text {
+    line-height: 3rem;
+}
+
+.more-btn {
+    padding: 2rem 0;
+}
+
+section.loading {
+
+}

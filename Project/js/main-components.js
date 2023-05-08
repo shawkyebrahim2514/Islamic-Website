@@ -53,4 +53,23 @@ function createOverlay() {
   return overlay;
 }
 
-export { createNavbar, createFooter, createOverlay };
+function createScrollToTop() {
+  const scrollToTop = document.createElement("div");
+  scrollToTop.classList.add("scroll-to-top");
+  scrollToTop.innerHTML = `
+  <i class="fa-solid fa-circle-up"></i>
+  `;
+  return scrollToTop;
+}
+
+function createCircleLoading() {
+  const loading = document.createElement("section");
+  loading.classList.add("loading");
+  loading.innerHTML = `
+  <div>
+  <span class="loader"></span>
+  </div>`;
+  return loading;
+}
+
+export { createNavbar, createFooter, createOverlay, createScrollToTop, createCircleLoading };
