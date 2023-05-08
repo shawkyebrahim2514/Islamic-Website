@@ -7,7 +7,6 @@ async function fetchGregorianToHijriFullDate(date) {
       `http://api.aladhan.com/v1/timings/${fullDate}?latitude=${location.latitude}&longitude=${location.longitude}&method=5`
     );
     let json = await response.json();
-    console.log(json);
     return json.data;
   } catch (error) {
     return new Error(error);
@@ -51,6 +50,7 @@ async function getPrayersTime(date) {
 async function getGregorianHijriFullDateAndPrayersTime(date) {
   if (!date) date = JSON.parse(sessionStorage.date);
   let gregorianToHijri = await fetchGregorianToHijriFullDate(date);
+  console.log(gregorianToHijri);
   return {
     date: {
       gregorian: {

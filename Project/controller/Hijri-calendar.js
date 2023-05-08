@@ -25,9 +25,7 @@ dateInput.addEventListener("change", async () => {
 });
 
 function removeAllChildren(element) {
-  while (element.firstChild) {
-    element.removeChild(element.firstChild);
-  }
+  element.innerHTML = "";
 }
 
 function updateHijriCalnderPageDate(newValue) {
@@ -65,32 +63,48 @@ function addDayElementEventListener(dayElement) {
     let day = dayAttachedWithElement.split("-")[0];
     let month = dayAttachedWithElement.split("-")[1];
     let year = dayAttachedWithElement.split("-")[2];
-    let fullDate = await getGregorianHijriFullDateAndPrayersTime({day, month, year});
+    let fullDate = await getGregorianHijriFullDateAndPrayersTime({
+      day,
+      month,
+      year,
+    });
     updateGregorianHijrioverlay(fullDate);
   });
 }
 
 function updateGregorianHijrioverlay(fullDate) {
   document.querySelector(".Gregorian-Hijri-overlay").style.display = "block";
+  setOverlayGregorianField(fullDate.date.gregorian);
+  setOverlayHijriField(fullDate.date.hijri);
+  setOverlayPrayerTimings(fullDate.prayerTimings);
+}
+
+function setOverlayGregorianField(gregorianDate) {
   let gregorianField = document.querySelector(
     ".Gregorian-Hijri-overlay .container div:first-of-type p"
   );
+  gregorianField.textContent = `${gregorianDate.weekday}, ${gregorianDate.day} ${gregorianDate.month.en} ${gregorianDate.year}`;
+}
+
+function setOverlayHijriField(hijriDate) {
   let hijriField = document.querySelector(
     ".Gregorian-Hijri-overlay .container div:nth-of-type(2) p"
   );
-  let prayerTimings = document.querySelector(
+  hijriField.textContent = `${hijriDate.weekday}, ${hijriDate.day} ${hijriDate.month.en} ${hijriDate.year}`;
+}
+
+function setOverlayPrayerTimings(prayerTimings) {
+  let prayerTimingRows = document.querySelector(
     ".Gregorian-Hijri-overlay .container div:nth-of-type(3) .timing-rows"
   );
-  gregorianField.textContent = `${fullDate.date.gregorian.weekday}, ${fullDate.date.gregorian.day} ${fullDate.date.gregorian.month.en} ${fullDate.date.gregorian.year}`;
-  hijriField.textContent = `${fullDate.date.hijri.weekday}, ${fullDate.date.hijri.day} ${fullDate.date.hijri.month.en} ${fullDate.date.hijri.year}`;
-  removeAllChildren(prayerTimings);
-  for (let prayer in fullDate.prayerTimings) {
+  removeAllChildren(prayerTimingRows);
+  for (let prayer in prayerTimings) {
     let prayerRow = document.createElement("p");
     prayerRow.classList.add("row");
     prayerRow.innerHTML = `
     <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
-    <span>${fullDate.prayerTimings[prayer]}</span>`;
-    prayerTimings.appendChild(prayerRow);
+    <span>${prayerTimings[prayer]}</span>`;
+    prayerTimingRows.appendChild(prayerRow);
   }
 }
 

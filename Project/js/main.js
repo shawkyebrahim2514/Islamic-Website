@@ -88,7 +88,6 @@ if (!sessionStorage.adhkar) {
 
 window.onscroll = function () {
   if (htmlDocument.scrollTop > window.innerHeight / 2) {
-    console.log("scrolling");
     document.querySelector(".scroll-to-top").style.bottom = "20px";
   } else {
     document.querySelector(".scroll-to-top").style.bottom = "-50px";

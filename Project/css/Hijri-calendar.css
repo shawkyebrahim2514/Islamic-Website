@@ -1,3 +1,7 @@
+main > section:first-child {
+  padding: 0 0 2rem;
+}
+
 section.Hijri-timing {
   width: 45%;
 }
@@ -12,8 +16,12 @@ input {
   width: 55%;
   margin-left: 25px;
   border-radius: var(--border-radius);
-  padding: 0 20px;
+  padding: 5px 20px;
   font-size: 1.2rem;
+}
+
+.container {
+  align-items: center;
 }
 
 section:has(input) + section h2 {
@@ -45,23 +53,6 @@ section:has(input) + section h2::before {
 section:has(input) + section h2::after {
   right: calc(50% + 120px);
 }
-
-/* .card {
-  counter-increment: cardCounter;
-  background-color: var(--orange-3);
-  padding: 20px 35px;
-  border-radius: var(--border-radius);
-  filter: var(--drop-shadow);
-  position: relative;
-  transition: var(--transition);
-  cursor: pointer;
-  text-align: center;
-  width: 216px;
-}
-
-.card:hover {
-  transform: scale(1.05);
-} */
 
 .card::before {
   content: counter(cardCounter);
@@ -116,7 +107,7 @@ section:has(input) + section h2::after {
   width: 100%;
 }
 
-.Gregorian-Hijri-overlay .container div:nth-of-type(2) p{
+.Gregorian-Hijri-overlay .container div:nth-of-type(2) p {
   direction: rtl;
 }
 
