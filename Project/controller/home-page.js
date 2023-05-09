@@ -15,7 +15,6 @@ async function setSecondSectionContent() {
     let secondSectionAyah = document.querySelector("main > section:nth-of-type(2) article");
     let ayahElement = document.createElement("h2");
     ayahElement.textContent = (await getAyahAndTranslation(17, 9)).arabic_text;
-    console.log(ayahElement);
     secondSectionAyah.prepend(ayahElement);
 }
 
@@ -24,7 +23,6 @@ async function setThirdSectionContent() {
     let secondSectionAyah = document.querySelector("main > section:nth-of-type(3) article");
     let ayahElement = document.createElement("h2");
     ayahElement.textContent = (await getAyahAndTranslation(59, 7)).arabic_text.slice(-130);
-    console.log(ayahElement);
     secondSectionAyah.prepend(ayahElement);
 }
 
@@ -33,7 +31,6 @@ async function setFourthSectionContent() {
     let secondSectionAyah = document.querySelector("main > section:nth-of-type(4) article");
     let ayahElement = document.createElement("h2");
     ayahElement.textContent = (await getAyahAndTranslation(33, 41)).arabic_text;
-    console.log(ayahElement);
     secondSectionAyah.prepend(ayahElement);
 }
 
@@ -42,4 +39,4 @@ await setHijriSectionContent();
 await setSecondSectionContent();
 await setThirdSectionContent();
 await setFourthSectionContent();
-document.querySelector(".overlay").style.display = "none";
+document.querySelector(".loading-overlay").style.display = "none";

@@ -40,7 +40,7 @@ function addHadithCardEventListener(card) {
   });
 }
 
-function removeElementsBeforeMoreBtn() {
+export function removeElementsBeforeMoreBtn() {
   while (moreBtn.previousElementSibling) {
     moreBtn.previousElementSibling.remove();
   }
@@ -62,8 +62,6 @@ function addCircleLoader() {
 
 function updateAhadithSection(result) {
   for (let hadith of result.hadiths) {
-    console.log(hadith);
-    console.log(moreBtn);
     let hadithSection = createNewHadithSection(hadith);
     moreBtn.before(hadithSection);
   }
@@ -84,4 +82,4 @@ await setAdahithNarrators();
 document
   .querySelector(".ahadith-narrators")
   .firstElementChild.dispatchEvent(new Event("click"));
-document.querySelector(".overlay").style.display = "none";
+document.querySelector(".loading-overlay").style.display = "none";

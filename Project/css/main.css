@@ -90,7 +90,7 @@ img {
   transform: scale(1.05);
 }
 
-.overlay {
+.loading-overlay {
   width: 100%;
   height: 100%;
   z-index: 20;
@@ -146,16 +146,27 @@ nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 62px;
 }
 
 nav section.logo {
   font-size: 2rem;
   font-weight: 900;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 nav ul.links {
   list-style: none;
+  padding: 0;
   display: flex;
+  transform-origin: top center;
+  transition: var(--transition);
+}
+
+nav ul.links.show {
+  transform: rotateX(0deg);
 }
 
 nav ul.links li {
@@ -163,11 +174,77 @@ nav ul.links li {
   padding: var(--padding-x);
   cursor: pointer;
   position: relative;
-  transition: var(--transition);
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 nav ul.links li:hover {
   background-color: rgb(255 255 255 / 15%);
+}
+
+nav .menu-bars {
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  width: 35px;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+nav .menu-bars span.bar {
+  width: 100%;
+  height: 3px;
+  background-color: var(--light);
+  transform-origin: center center;
+  transition: var(--transition);
+}
+
+nav .menu-bars.active span.bar:first-child {
+  transform: rotateZ(45deg);
+  position: absolute;
+}
+
+nav .menu-bars.active span.bar:not(:first-child) {
+  transform: rotateZ(-45deg);
+  position: absolute;
+}
+
+@media (max-width: 768px) {
+  nav ul.links {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: var(--orange-1);
+    transform: rotateX(90deg);
+  }
+  nav .menu-bars {
+    display: flex;
+  }
+
+  nav ul.links li {
+    border-top: 2px solid white;
+  }
+}
+
+.nav-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  background: rgb(0 0 0 / 50%);
+  height: 100%;
+  width: 100%;
+  z-index: 9;
+  display: none;
+}
+
+.nav-overlay.show{
+  display: block;
 }
 
 /* Style the footer */

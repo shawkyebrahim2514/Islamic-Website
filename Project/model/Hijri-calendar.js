@@ -50,7 +50,6 @@ async function getPrayersTime(date) {
 async function getGregorianHijriFullDateAndPrayersTime(date) {
   if (!date) date = JSON.parse(sessionStorage.date);
   let gregorianToHijri = await fetchGregorianToHijriFullDate(date);
-  console.log(gregorianToHijri);
   return {
     date: {
       gregorian: {

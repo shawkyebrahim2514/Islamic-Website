@@ -73,7 +73,7 @@ function addDayElementEventListener(dayElement) {
 }
 
 function updateGregorianHijrioverlay(fullDate) {
-  document.querySelector(".Gregorian-Hijri-overlay").style.display = "block";
+  document.querySelector(".Gregorian-Hijri-overlay").style.display = "flex";
   setOverlayGregorianField(fullDate.date.gregorian);
   setOverlayHijriField(fullDate.date.hijri);
   setOverlayPrayerTimings(fullDate.prayerTimings);
@@ -90,7 +90,7 @@ function setOverlayHijriField(hijriDate) {
   let hijriField = document.querySelector(
     ".Gregorian-Hijri-overlay .container div:nth-of-type(2) p"
   );
-  hijriField.textContent = `${hijriDate.weekday}, ${hijriDate.day} ${hijriDate.month.en} ${hijriDate.year}`;
+  hijriField.textContent = `${hijriDate.weekday}, ${hijriDate.day} ${hijriDate.month.ar} ${hijriDate.year}`;
 }
 
 function setOverlayPrayerTimings(prayerTimings) {
@@ -141,4 +141,4 @@ function changeDateInput(number) {
 
 setHijriSectionContent();
 setDefaultDateInput();
-document.querySelector(".overlay").style.display = "none";
+document.querySelector(".loading-overlay").style.display = "none";

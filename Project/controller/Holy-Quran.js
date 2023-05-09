@@ -198,4 +198,4 @@ export function nextAyah() {
 await setQuranPlayer();
 await updateTafsirSection(1, 1);
 document.querySelector("header").innerHTML = getQuranKaremSVG("250px");
-document.querySelector(".overlay").style.display = "none";
+document.querySelector(".loading-overlay").style.display = "none";

@@ -1,5 +1,7 @@
 import {
+  addMenubarsEventListener,
   createFooter,
+  createNavOverlay,
   createNavbar,
   createOverlay,
   createScrollToTop,
@@ -10,6 +12,11 @@ import {
 //prepend the navabar to the body
 const navbar = createNavbar();
 document.body.prepend(navbar);
+
+const navOverlay = createNavOverlay();
+document.body.prepend(navOverlay);
+
+addMenubarsEventListener();
 
 //append the overlay to the body
 const overlay = createOverlay();

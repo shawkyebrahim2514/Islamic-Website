@@ -5,6 +5,11 @@ function createNavbar() {
   nav.innerHTML = `
       <div class="container">
         <section class="logo">Muslim</section>
+        <section class="menu-bars">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </section>
         <ul class="links">
           <a href="/view/index.html"><li>Home</li></a>
           <a href="/view/Hijri-calendar.html"><li>Hijri Calendar</li></a>
@@ -15,6 +20,32 @@ function createNavbar() {
       </div>
     `;
   return nav;
+}
+
+function createNavOverlay() {
+  const navOverlay = document.createElement("div");
+  navOverlay.classList.add("nav-overlay");
+  return navOverlay;
+}
+
+function addMenubarsEventListener() {
+  const menuBars = document.querySelector(".menu-bars");
+  const links = document.querySelector(".links");
+  const navOverlay = document.querySelector(".nav-overlay");
+  menuBars.addEventListener("click", () => {
+    links.classList.toggle("show");
+    navOverlay.classList.toggle("show");
+    menuBars.classList.toggle("active");
+  });
+  addNavOverlayEventListener();
+}
+
+function addNavOverlayEventListener() {
+  const navOverlay = document.querySelector(".nav-overlay");
+  const menuBars = document.querySelector(".menu-bars");
+  navOverlay.addEventListener("click", () => {
+    menuBars.click();
+  });
 }
 
 function createFooter() {
@@ -44,7 +75,7 @@ function createFooter() {
 
 function createOverlay() {
   const overlay = document.createElement("div");
-  overlay.classList.add("overlay");
+  overlay.classList.add("loading-overlay");
   overlay.innerHTML = `
   <div class="loading-spinner"><div class="spinner">
 <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
@@ -72,4 +103,12 @@ function createCircleLoading() {
   return loading;
 }
 
-export { createNavbar, createFooter, createOverlay, createScrollToTop, createCircleLoading };
+export {
+  createNavbar,
+  addMenubarsEventListener,
+  createFooter,
+  createOverlay,
+  createScrollToTop,
+  createCircleLoading,
+  createNavOverlay
+};

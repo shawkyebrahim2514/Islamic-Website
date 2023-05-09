@@ -1,41 +1,76 @@
-section.ahadith-narrators, .more-btn, section.loading {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+section:where(.ahadith-narrators, .adhkar-names),
+.more-btn,
+section.loading {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 header {
-    border-bottom: 2px solid var(--dark);
+  border-bottom: 2px solid var(--dark);
 }
 
-
-header, .header-image {
-    padding-bottom: 2rem;
-    text-align: center;
+header,
+.header-image {
+  padding-bottom: 2rem;
+  text-align: center;
 }
 
-section.ahadith-narrators {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+section:where(.ahadith-narrators, .adhkar-names) {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 main > section {
-    padding: 1rem 2rem;
-    text-align: center;
-    display: grid;
-    gap: 1rem;
+  padding: 1rem 2rem;
+  text-align: center;
+  display: grid;
+  gap: 1rem;
 }
 
-main > section .hadith-text {
-    line-height: 3rem;
+main > section h2 {
+  line-height: 3rem;
 }
 
 .more-btn {
-    padding: 2rem 0;
+  padding: 2rem 0;
 }
 
 section.loading {
+}
 
+.counter {
+  --size: 60px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: var(--orange-1);
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: var(--transition);
+  filter: var(--drop-shadow)
+}
+
+.counter:hover {
+    transform: scale(1.1);
+}
+
+.counter span {
+  width: calc(var(--size) - 10px);
+  height: calc(var(--size) - 10px);
+  border-radius: 50%;
+  border: 3px solid var(--light);
+  color: var(--light);
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-bottom: 2px;
 }
