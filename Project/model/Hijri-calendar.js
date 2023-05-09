@@ -80,7 +80,7 @@ async function getGregorianHijriFullDateAndPrayersTime(date) {
 async function fetchGregorianToHijriMonthDate(monthYearDate) {
   try {
     let response = await fetch(
-      `http://api.aladhan.com/v1/gToHCalendar/${monthYearDate}`
+      `https://api.aladhan.com/v1/gToHCalendar/${monthYearDate}`
     );
     let json = await response.json();
     return json.data;

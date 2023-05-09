@@ -1,6 +1,6 @@
 async function getQuranInfo() {
   try {
-    const response = await fetch("http://api.alquran.cloud/v1/meta");
+    const response = await fetch("https://api.alquran.cloud/v1/meta");
     const json = await response.json();
     return json.data;
   } catch (error) {
@@ -23,7 +23,7 @@ async function getSurahAyahs(surahNumber) {
 async function getAyahAudio(ayahNumber) {
   try {
     const response = await fetch(
-      `http://api.alquran.cloud/v1/ayah/${ayahNumber}/ar.alafasy`
+      `https://api.alquran.cloud/v1/ayah/${ayahNumber}/ar.alafasy`
     );
     const json = await response.json();
     return json.data;
