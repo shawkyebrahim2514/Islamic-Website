@@ -4,7 +4,7 @@ async function fetchGregorianToHijriFullDate(date) {
   let location = JSON.parse(sessionStorage.userLocation);
   try {
     let response = await fetch(
-      `http://api.aladhan.com/v1/timings/${fullDate}?latitude=${location.latitude}&longitude=${location.longitude}&method=5`
+      `https://api.aladhan.com/v1/timings/${fullDate}?latitude=${location.latitude}&longitude=${location.longitude}&method=5`
     );
     let json = await response.json();
     return json.data;

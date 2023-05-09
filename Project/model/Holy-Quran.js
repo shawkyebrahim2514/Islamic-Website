@@ -35,7 +35,7 @@ async function getAyahAudio(ayahNumber) {
 async function getPageAyahs(pageNumber) {
   try {
     const response = await fetch(
-      `http://api.alquran.cloud/v1/page/${pageNumber}/quran-uthmani`
+      `https://api.alquran.cloud/v1/page/${pageNumber}/quran-uthmani`
     );
     const json = await response.json();
     return json.data;
