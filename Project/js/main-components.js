@@ -11,11 +11,11 @@ function createNavbar() {
           <span class="bar"></span>
         </section>
         <ul class="links">
-          <a href="./index.html"><li>Home</li></a>
-          <a href="./Hijri-calendar.html"><li>Hijri Calendar</li></a>
-          <a href="./Holy-Quran.html"><li>Holy Quran</li></a>
-          <a href="./ahadith.html"><li>Ahadith</li></a>
-          <a href="./adhkar.html"><li>Adhkar</li></a>
+          <a href="index.html"><li>Home</li></a>
+          <a href="Hijri-calendar.html"><li>Hijri Calendar</li></a>
+          <a href="Holy-Quran.html"><li>Holy Quran</li></a>
+          <a href="ahadith.html"><li>Ahadith</li></a>
+          <a href="adhkar.html"><li>Adhkar</li></a>
         </ul>
       </div>
     `;
