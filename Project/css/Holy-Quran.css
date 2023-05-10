@@ -74,20 +74,24 @@ section.quran-player section.quran-text p.ayah-text.active {
 } */
 
 span.ayah-symbol-number {
-  font-family: auto;
-  font-size: 2.1rem;
+  font-size: 2rem;
   position: relative;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  height: 48px;
+}
+
+span.ayah-symbol-number .symbol {
+  font-family: auto;
 }
 
 span.ayah-number {
   font-size: 1rem;
   position: absolute;
-  top: calc(50% - 1px);
+  top: 23px;
   font-weight: bold;
-  display: inline;
+  display: block;
   line-height: 0;
 }
 

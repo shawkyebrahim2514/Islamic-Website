@@ -94,7 +94,7 @@ function createNewAyah(ayah) {
   newAyah.setAttribute("data-page-number", ayahPageNumber);
   newAyah.setAttribute("data-ayah-in-surah-number", ayahNumberInSurah);
   newAyah.innerHTML = `${ayahText} <span class="ayah-symbol-number">
-  &#1757;<span class="ayah-number">${ayahNumberInSurah}</span></span> `;
+  <span class="symbol">&#1757;</span><span class="ayah-number">${ayahNumberInSurah}</span></span> `;
   addAyahClickEventListener(newAyah);
   return newAyah;
 }
@@ -146,7 +146,7 @@ async function updateTafsirSection(surahNumber, ayahNumberInSurah) {
   tafsirSection.querySelector(
     "header .ayah-text"
   ).innerHTML = `${ayahTranslation.arabic_text} <span class="ayah-symbol-number">
-  &#1757;<span class="ayah-number">${ayahNumberInSurah}</span></span>`;
+  <span class="symbol">&#1757;</span><span class="ayah-number">${ayahNumberInSurah}</span></span>`;
   tafsirSection.querySelector("section.tafsir-text p").textContent =
     ayahTranslation.translation;
 }
