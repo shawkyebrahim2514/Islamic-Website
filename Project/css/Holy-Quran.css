@@ -80,6 +80,7 @@ span.ayah-symbol-number {
   justify-content: center;
   align-items: center;
   height: 48px;
+  line-height: 0;
 }
 
 span.ayah-symbol-number .symbol {
@@ -91,8 +92,6 @@ span.ayah-number {
   position: absolute;
   top: 23px;
   font-weight: bold;
-  display: block;
-  line-height: 0;
 }
 
 section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
