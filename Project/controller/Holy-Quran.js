@@ -6,7 +6,7 @@ import {
   getQuranInfo,
 } from "../model/Holy-Quran.js";
 import { getBasmalaSVG } from "../model/Holy-Quran.js";
-import { getQuranKaremSVG } from "../js/svg-elements.js";
+import { getAyahSymbolSVG, getQuranKaremSVG } from "../js/svg-elements.js";
 
 async function setQuranPlayer() {
   let quranInfo = await getQuranInfo();
@@ -94,7 +94,7 @@ function createNewAyah(ayah) {
   newAyah.setAttribute("data-page-number", ayahPageNumber);
   newAyah.setAttribute("data-ayah-in-surah-number", ayahNumberInSurah);
   newAyah.innerHTML = `${ayahText} <span class="ayah-symbol-number">
-  <span class="symbol">&#1757;</span><span class="ayah-number">${ayahNumberInSurah}</span></span> `;
+  ${getAyahSymbolSVG()}${ayahNumberInSurah}</span> `;
   addAyahClickEventListener(newAyah);
   return newAyah;
 }
@@ -146,7 +146,7 @@ async function updateTafsirSection(surahNumber, ayahNumberInSurah) {
   tafsirSection.querySelector(
     "header .ayah-text"
   ).innerHTML = `${ayahTranslation.arabic_text} <span class="ayah-symbol-number">
-  <span class="symbol">&#1757;</span><span class="ayah-number">${ayahNumberInSurah}</span></span>`;
+  ${getAyahSymbolSVG()}${ayahNumberInSurah}</span>`;
   tafsirSection.querySelector("section.tafsir-text p").textContent =
     ayahTranslation.translation;
 }
