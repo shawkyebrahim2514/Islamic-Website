@@ -81,16 +81,19 @@ span.ayah-symbol-number {
   align-items: center;
   height: 48px;
   line-height: 0;
+  margin: 0 15px;
 }
 
 span.ayah-symbol-number .symbol {
   font-family: auto;
+  position: absolute;
+  top: 40px;
 }
 
 span.ayah-number {
   font-size: 1rem;
   position: absolute;
-  top: 23px;
+  top: 39px;
   font-weight: bold;
 }
 
