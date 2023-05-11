@@ -87,13 +87,13 @@ span.ayah-symbol-number {
 span.ayah-symbol-number .symbol {
   font-family: auto;
   position: absolute;
-  top: 40px;
+  top: calc(50% + 15px);
 }
 
 span.ayah-number {
   font-size: 1rem;
   position: absolute;
-  top: 39px;
+  top: calc(50% + 14px);
   font-weight: bold;
 }
 
