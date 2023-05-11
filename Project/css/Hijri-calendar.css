@@ -55,7 +55,8 @@ section:has(input) + section h2::after {
   position: absolute;
   top: -10px;
   left: -10px;
-  background-color: var(--orange-1);
+  /* background-color: var(--orange-1); */
+  background: var(--gradient);
   color: var(--orange-3);
   width: 40px;
   height: 40px;
@@ -111,7 +112,8 @@ section:has(input) + section h2::after {
 }
 
 .Gregorian-Hijri-overlay h3 {
-  background-color: var(--orange-1);
+  /* background-color: var(--orange-1); */
+  background: var(--gradient);
   color: var(--light);
   padding: 5px 10px;
 }

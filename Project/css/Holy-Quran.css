@@ -59,29 +59,16 @@ section.quran-player section.quran-text p.ayah-text.active {
   color: var(--light);
 }
 
-/* span.ayah-number {
-  border-radius: 50%;
-  display: inline-flex;
-  justify-content: center;
-  width: 32px;
-  align-items: center;
-  height: 32px;
-  font-size: 1rem;
-  border: 2px solid var(--dark);
-  position: relative;
-  top: -3px;
-  font-weight: bold;
-} */
-
 span.ayah-symbol-number {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: bold;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 45px;
   position: relative;
-  top: -5px;
+  top: -6px;
+  line-height: 36px;
 }
 
 span.ayah-symbol-number svg {
@@ -91,10 +78,6 @@ span.ayah-symbol-number svg {
 
 section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
   color: var(--light);
-}
-
-section.quran-player section.quran-text p.ayah-text::before {
-  content: "\00a0";
 }
 
 .controllers {

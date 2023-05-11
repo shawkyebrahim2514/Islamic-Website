@@ -38,15 +38,13 @@ main > section h2 {
   padding: 2rem 0;
 }
 
-section.loading {
-}
-
 .counter {
   --size: 60px;
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  background-color: var(--orange-1);
+  /* background-color: var(--orange-1); */
+  background: var(--gradient);
   margin: 0 auto;
   display: flex;
   justify-content: center;

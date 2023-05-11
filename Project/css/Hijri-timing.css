@@ -25,7 +25,7 @@ section.Hijri-timing .row {
 }
 
 section.Hijri-timing .row:not(:first-child):hover {
-  background: var(--gradiant);
+  background: var(--gradient);
   border-color: var(--orange-1);
   color: var(--light);
 }

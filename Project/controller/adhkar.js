@@ -71,7 +71,9 @@ function cleanDhkrContent(dhkr) {
 }
 
 function addCounterEventListener(counter) {
-  counter.addEventListener("click", function () {
+  counter.addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log(event);
     let counter = this.firstElementChild;
     let count = counter.textContent;
     if (count == 0) {

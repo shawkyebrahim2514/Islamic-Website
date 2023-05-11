@@ -18,7 +18,7 @@
 }
 
 .audio-player .timeline .progress {
-  background: var(--orange-1);
+  background: var(--gradient);
   width: 0%;
   height: 100%;
   transition: 0.25s;

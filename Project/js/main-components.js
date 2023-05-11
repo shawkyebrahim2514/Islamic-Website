@@ -57,16 +57,16 @@ function createFooter() {
       </div>
       <div class="links">
         <a href="https://www.facebook.com/shawky.ebrahim.ahmed/"
-          ><i class="fa-brands fa-facebook"></i
+          ><i class="fa-brands fa-facebook fa-lg"></i
         ></a>
         <a href="https://www.linkedin.com/in/shawkyebrahim2514/"
-          ><i class="fa-brands fa-linkedin"></i
+          ><i class="fa-brands fa-linkedin fa-lg"></i
         ></a>
         <a href="https://t.me/shawkyebrahim2514"
-          ><i class="fa-brands fa-telegram"></i
+          ><i class="fa-brands fa-telegram fa-lg"></i
         ></a>
         <a href="mailto:shawky.ebrahim2514@gmail.com"
-          ><i class="fa-solid fa-at"></i
+          ><i class="fa-solid fa-at fa-lg"></i
         ></a>
       </div>
     `;

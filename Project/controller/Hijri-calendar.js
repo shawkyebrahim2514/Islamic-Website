@@ -3,6 +3,7 @@ import {
   getGregorianHijriFullDateAndPrayersTime,
   getGregorianToHijriMonthDate,
 } from "../model/Hijri-calendar.js";
+import { createCircleLoading } from "../js/main-components.js";
 
 let dateInput = document.querySelector("input");
 
@@ -36,12 +37,19 @@ function updateHijriCalnderPageDate(newValue) {
 }
 
 async function updateDayCards(daysContent) {
+  addCircleLoader(daysContent);
   let days = await getGregorianToHijriMonthDate();
+  removeAllChildren(daysContent);
   daysContent.previousElementSibling.textContent = `${days[0].gregorian.month.en} ${days[0].gregorian.year}`;
   for (let day of days) {
     let dayElement = createNewCardDay(day);
     daysContent.appendChild(dayElement);
   }
+}
+
+function addCircleLoader(daysContent) {
+  let circleLoader = createCircleLoading();
+  daysContent.appendChild(circleLoader);
 }
 
 function createNewCardDay(day) {
