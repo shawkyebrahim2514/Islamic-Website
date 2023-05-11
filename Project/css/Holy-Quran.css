@@ -78,17 +78,32 @@ span.ayah-symbol-number {
   position: relative;
   display: inline-block;
   line-height: 0;
+  width: 37px;
 }
 
-
+/* span.ayah-symbol-number .symbol {
+  font-family: auto;
+} */
 span.ayah-symbol-number .symbol {
   font-family: auto;
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 37px;
 }
 
-span.ayah-number {
+/* span.ayah-number {
   font-size: 1rem;
   position: absolute;
   top: 0;
+  left: 0;
+  font-weight: bold;
+  width: 37px;
+} */
+span.ayah-number {
+  font-size: 1rem;
+  position: absolute;
+  top: -7px;
   left: 0;
   font-weight: bold;
   width: 37px;
