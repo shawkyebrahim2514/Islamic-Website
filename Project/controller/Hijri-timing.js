@@ -8,6 +8,26 @@ async function setHijriSectionContent(date) {
   setHijriSectionFullDate(currentDate);
 }
 
+function setHijriTimings(prayerTimings) {
+  let fullSectionDate = document.querySelector(
+    "section:has(section.Hijri-timing) section.Hijri-timing"
+  );
+  for (let prayer in prayerTimings) {
+    let prayerTimesElements = createPrayerRow(prayer, prayerTimings[prayer])
+    fullSectionDate.appendChild(prayerTimesElements);
+  }
+}
+
+function createPrayerRow(prayer, prayerTime) {
+  let prayerTimeElement = document.createElement("div");
+  prayerTimeElement.classList.add("row");
+  prayerTimeElement.innerHTML = `
+    <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
+    <span>${prayerTime}</span>
+    `;
+  return prayerTimeElement;
+}
+
 function setHijriSectionFullDate(currentDate) {
   let fullSectionDate = document.querySelector(
     "section:has(section.Hijri-timing) h2"
@@ -23,19 +43,6 @@ function setHijriSectionFullDate(currentDate) {
         ${currentDate.hijri.month.en}
         ${currentDate.hijri.year})`;
   fullSectionDate.innerHTML = `${GregorianDate} ${HijriDate.outerHTML}`;
-}
-
-function setHijriTimings(prayerTimings) {
-  let fullSectionDate = document.querySelector("section:has(section.Hijri-timing) section.Hijri-timing");
-  for (let prayer in prayerTimings) {
-    let prayerTimesElements = document.createElement("div");
-    prayerTimesElements.classList.add("row");
-    prayerTimesElements.innerHTML = `
-      <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
-      <span>${prayerTimings[prayer]}</span>
-      `;
-    fullSectionDate.appendChild(prayerTimesElements);
-  }
 }
 
 export { setHijriSectionContent };

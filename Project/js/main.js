@@ -5,7 +5,7 @@ import {
   createNavbar,
   createOverlay,
   createScrollToTop,
-} from "./main-components.js";
+} from "./components.js";
 
 // Define the main component
 

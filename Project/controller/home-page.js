@@ -1,7 +1,7 @@
 import { getAyahAndTranslation, getBasmalaSVG } from "../model/Holy-Quran.js";
 import { setHijriSectionContent } from "./Hijri-timing.js";
 
-// upload header's content
+// Set header's content
 async function setHeaderContent() {
   let headerText = document.querySelector("header .container");
   let ayahElement = document.createElement("h2");
@@ -10,7 +10,7 @@ async function setHeaderContent() {
   headerText.innerHTML = basmalaSVG + ayahElement.outerHTML;
 }
 
-// Upload Second Section Content
+// Set Second Section Content
 async function setSecondSectionContent() {
     let secondSectionAyah = document.querySelector("main > section:nth-of-type(2) article");
     let ayahElement = document.createElement("h2");
@@ -18,7 +18,7 @@ async function setSecondSectionContent() {
     secondSectionAyah.prepend(ayahElement);
 }
 
-// Upload Third Section Content
+// Set Third Section Content
 async function setThirdSectionContent() {
     let secondSectionAyah = document.querySelector("main > section:nth-of-type(3) article");
     let ayahElement = document.createElement("h2");
@@ -26,7 +26,7 @@ async function setThirdSectionContent() {
     secondSectionAyah.prepend(ayahElement);
 }
 
-// Upload Fourth Section Content
+// Set Fourth Section Content
 async function setFourthSectionContent() {
     let secondSectionAyah = document.querySelector("main > section:nth-of-type(4) article");
     let ayahElement = document.createElement("h2");

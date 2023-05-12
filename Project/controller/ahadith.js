@@ -1,4 +1,4 @@
-import { createCircleLoading } from "../js/main-components.js";
+import { createCircleLoading } from "../js/components.js";
 import { getAhadithNarrators, getRangeOfAhadith } from "../model/ahadith.js";
 
 let ahadithGenerator;

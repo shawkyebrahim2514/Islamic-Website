@@ -1,0 +1,130 @@
+import { createCircleLoading } from "../js/components.js";
+
+let dateInput = document.querySelector("input");
+function setDefaultDateInput() {
+  let date = JSON.parse(sessionStorage.HijriCalnderPageDate);
+  let monthYearDate = `${date.year}-${date.month}`;
+  dateInput.value = monthYearDate;
+  dateInput.dispatchEvent(new Event("change"));
+}
+
+function removeAllChildrenOf(element) {
+  element.innerHTML = "";
+}
+
+function updateHijriCalnderPageDateWith(newValue) {
+  let hijriCalnderPageDate = JSON.parse(sessionStorage.HijriCalnderPageDate);
+  hijriCalnderPageDate.month = newValue.split("-")[1];
+  hijriCalnderPageDate.year = newValue.split("-")[0];
+  sessionStorage.HijriCalnderPageDate = JSON.stringify(hijriCalnderPageDate);
+}
+
+function addCircleLoaderTo(daysContent) {
+  let circleLoader = createCircleLoading();
+  daysContent.appendChild(circleLoader);
+}
+
+function createDayCard(day) {
+  let dayElement = document.createElement("div");
+  dayElement.classList.add("card");
+  dayElement.setAttribute("data-day", day.gregorian.date);
+  dayElement.innerHTML = `
+  <p>${day.gregorian.weekday.en} ${day.hijri.weekday.ar}</p>
+  <p>${day.hijri.day} ${day.hijri.month.ar} ${day.hijri.year}</p>
+  <p>${day.gregorian.day} ${day.gregorian.month.en} ${day.gregorian.year}</p>
+  `;
+  return dayElement;
+}
+
+function updateGregorianHijrioverlay(fullDate) {
+  document.querySelector(".Gregorian-Hijri-overlay").style.display = "flex";
+  setOverlayGregorianField(fullDate.date.gregorian);
+  setOverlayHijriField(fullDate.date.hijri);
+  setOverlayPrayerTimings(fullDate.prayerTimings);
+}
+
+function setOverlayGregorianField(gregorianDate) {
+  let gregorianField = document.querySelector(
+    ".Gregorian-Hijri-overlay .container div:first-of-type p"
+  );
+  gregorianField.textContent = `${gregorianDate.weekday}, ${gregorianDate.day} ${gregorianDate.month.en} ${gregorianDate.year}`;
+}
+
+function setOverlayHijriField(hijriDate) {
+  let hijriField = document.querySelector(
+    ".Gregorian-Hijri-overlay .container div:nth-of-type(2) p"
+  );
+  hijriField.textContent = `${hijriDate.weekday}, ${hijriDate.day} ${hijriDate.month.ar} ${hijriDate.year}`;
+}
+
+function setOverlayPrayerTimings(prayerTimings) {
+  let prayerTimingRows = document.querySelector(
+    ".Gregorian-Hijri-overlay .container div:nth-of-type(3) .timing-rows"
+  );
+  removeAllChildrenOf(prayerTimingRows);
+  for (let prayer in prayerTimings) {
+    let prayerRow = createPrayerRow(prayer, prayerTimings[prayer]);
+    prayerTimingRows.appendChild(prayerRow);
+  }
+}
+
+function createPrayerRow(prayer, prayerTime) {
+  let prayerRow = document.createElement("p");
+  prayerRow.classList.add("row");
+  prayerRow.innerHTML = `
+    <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
+    <span>${prayerTime}</span>`;
+  return prayerRow;
+}
+
+function addGregorianHijriOverlayEventListener() {
+  let gregorianHijriOverlay = document.querySelector(
+    ".Gregorian-Hijri-overlay"
+  );
+  gregorianHijriOverlay.addEventListener("click", (event) => {
+    let gregorianHijriContent = document.querySelector(
+      ".Gregorian-Hijri-overlay .container"
+    );
+    if (!gregorianHijriContent.contains(event.target)) {
+      event.target.style.display = "none";
+    }
+  });
+}
+
+function addNextArrowEventListener() {
+  document.querySelector(".controllers .next").addEventListener("click", () => {
+    changeDateInput(1);
+    dateInput.dispatchEvent(new Event("change"));
+  });
+}
+
+function addPreviousArrowEventListener() {
+  document
+    .querySelector(".controllers .previous")
+    .addEventListener("click", () => {
+      changeDateInput(-1);
+      dateInput.dispatchEvent(new Event("change"));
+    });
+}
+
+function changeDateInput(number) {
+  let date = new Date(dateInput.value);
+  date.setMonth(date.getMonth() + number);
+  let dateString = date.toISOString().slice(0, 7);
+  dateInput.value = dateString;
+}
+
+addGregorianHijriOverlayEventListener();
+addNextArrowEventListener();
+addPreviousArrowEventListener();
+export {
+  setDefaultDateInput,
+  removeAllChildrenOf,
+  updateHijriCalnderPageDateWith,
+  addCircleLoaderTo,
+  createDayCard,
+  updateGregorianHijrioverlay,
+  setOverlayGregorianField,
+  setOverlayHijriField,
+  setOverlayPrayerTimings,
+};
