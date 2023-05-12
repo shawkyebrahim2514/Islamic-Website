@@ -114,6 +114,11 @@ function changeDateInput(number) {
   dateInput.value = dateString;
 }
 
+function displayLoadingOverlay() {
+  document.querySelector(".loading-overlay").style.display = "none";
+}
+
+displayLoadingOverlay();
 addGregorianHijriOverlayEventListener();
 addNextArrowEventListener();
 addPreviousArrowEventListener();

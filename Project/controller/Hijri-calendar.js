@@ -48,4 +48,3 @@ function addDayElementEventListener(dayElement) {
 
 setHijriSectionContent();
 util.setDefaultDateInput();
-document.querySelector(".loading-overlay").style.display = "none";

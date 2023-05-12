@@ -1,4 +1,5 @@
-import { getAyahAndTranslation, getBasmalaSVG } from "../model/Holy-Quran.js";
+import { getAyahAndTranslation } from "../model/Holy-Quran.js";
+import { getBasmalaSVG } from "../js/svg-elements.js";
 import { setHijriSectionContent } from "./Hijri-timing.js";
 
 // Set header's content

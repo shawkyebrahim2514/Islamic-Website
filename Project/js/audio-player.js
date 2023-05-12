@@ -1,4 +1,4 @@
-import { nextAyah } from "../controller/Holy-Quran.js";
+import { nextAyah } from "./Holy-Quran.js";
 
 const audioPlayer = document.querySelector(".audio-player");
 const playBtn = audioPlayer.querySelector(".controls .toggle-play");
@@ -83,7 +83,7 @@ playBtn.addEventListener(
   false
 );
 
-// add event listener to play button when press space
+// add event listener to toggle button when press space
 document.addEventListener("keydown", function (e) {
   if (e.code == "Space") {
     playBtn.click();
