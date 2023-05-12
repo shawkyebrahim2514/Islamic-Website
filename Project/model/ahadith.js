@@ -32,16 +32,4 @@ async function getSpecificAhadith(narratorName, hadithNumber) {
   }
 }
 
-async function* getRangeOfAhadith(name) {
-    let from = 1;
-    let range = 10;
-    while (true) {
-      let to = from + range;
-      let ahadith = await fetchRangeOfAhadith(name, from, to);
-      if (ahadith.length === 0) break;
-      yield ahadith;
-      from = to + 1;
-    }
-}
-
-export { getAhadithNarrators, getRangeOfAhadith, getSpecificAhadith}
+export { getAhadithNarrators, getSpecificAhadith, fetchRangeOfAhadith}
