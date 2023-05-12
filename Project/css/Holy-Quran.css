@@ -65,7 +65,7 @@ span.ayah-symbol-number {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 45px;
+  width: 36px;
   position: relative;
   top: -6px;
   line-height: 36px;
@@ -73,7 +73,6 @@ span.ayah-symbol-number {
 
 span.ayah-symbol-number svg {
   position: absolute;
-  width: 42px;
 }
 
 section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
