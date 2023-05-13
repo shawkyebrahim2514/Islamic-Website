@@ -21,6 +21,7 @@ section.tafsir .container {
   display: grid;
   gap: 15px;
   direction: rtl;
+  line-height: 42px;
 }
 
 section.tafsir header {

@@ -94,7 +94,7 @@ function checkPuttingBasmala(ayahNumberInSurah, ayahPageNumber) {
   if (ayahNumberInSurah == 1 && ayahPageNumber != 1 && ayahPageNumber != 187) {
     let basmala = document.createElement("p");
     basmala.classList.add("basmala");
-    basmala.innerHTML = getBasmalaSVG("100%", "50px");
+    basmala.innerHTML = getBasmalaSVG("100%", "55px");
     return basmala;
   } else {
     return null;
@@ -162,9 +162,8 @@ function nextAyah() {
   );
   if (activeAyah == null) return;
   if (activeAyah.nextElementSibling) {
-    if (activeAyah.nextElementSibling.classList.contains("basmala"))
-      activeAyah.nextElementSibling.nextElementSibling.click();
-    else activeAyah.nextElementSibling.click();
+    let nextAyahElement = getNextAyahElement(activeAyah);
+    nextAyahElement.click();
   } else {
     document
       .querySelector(".quran-player .controllers .prev-next-controller .next")
@@ -173,6 +172,16 @@ function nextAyah() {
       .querySelector(".quran-player .quran-text")
       .setAttribute("data-continue-playing", "true");
   }
+}
+
+function getNextAyahElement(activeAyah) {
+  activeAyah = activeAyah.nextElementSibling;
+  while (
+    activeAyah.classList.contains("basmala") || activeAyah.classList.contains("surah-name")
+  ) {
+    activeAyah = activeAyah.nextElementSibling;
+  }
+  return activeAyah;
 }
 
 function setHeaderSVG() {

@@ -42,7 +42,7 @@ html {
 }
 
 ::selection {
-  background-color: var(--orange-1);
+  background-color: var(--orange-2);
   color: var(--light);
 }
 

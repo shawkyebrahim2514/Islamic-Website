@@ -45,7 +45,7 @@ section.quran-player section.quran-text p.ayah-text {
   display: inline;
   cursor: pointer;
   padding: 15px 5px 15px 0;
-  line-height: 67px;
+  line-height: 63px;
 }
 
 section.quran-player section.quran-text p.ayah-text:hover {
@@ -55,6 +55,8 @@ section.quran-player section.quran-text p.ayah-text:hover {
 section.quran-player section.quran-text p.ayah-text.active {
   background-color: var(--orange-2);
   color: var(--light);
+  position: relative;
+  z-index: 2;
 }
 
 span.ayah-symbol-number {
@@ -93,13 +95,13 @@ section.quran-player .quran-text .surah-name {
   justify-content: center;
   padding: 4px 0;
   background-color: #e5e5e5;
-  max-width: 480px;
+  max-width: 440px;
   margin: 0 auto;
   border-radius: 18px;
   border: 2px solid var(--dark);
   font-family: alQuranFont;
   font-weight: bold;
-  font-size: 2rem;
+  /* font-size: 2rem; */
 }
 
 section.quran-player .quran-text .surah-name:not(:first-child) {

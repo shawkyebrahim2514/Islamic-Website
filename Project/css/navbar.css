@@ -100,7 +100,7 @@ nav .menu-bars.active span.bar:not(:first-child) {
 
   nav ul.links li {
     border-top: 1px solid white;
-    padding: calc(var(--padding-x) / 2);
+    padding: calc(var(--padding-x) / 1.5);
   }
 }
 
