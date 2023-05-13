@@ -99,6 +99,11 @@ function checkContinuePlaying() {
   }
 }
 
+function updateControllerAndSessionPageNumber(pageSelectionNumber) {
+  updateControllerPageNumber(pageSelectionNumber);
+  updateSessionStoragePageNumber(pageSelectionNumber);
+}
+
 function updateControllerPageNumber(pageSelectionNumber) {
   document.querySelector(
     ".quran-player .controllers .page-number"
@@ -164,11 +169,6 @@ function setHeaderSVG() {
   document.querySelector("header").innerHTML = getQuranKaremSVG("250px");
 }
 
-function displayLoadingOverlay() {
-  document.querySelector(".loading-overlay").style.display = "none";
-}
-
-displayLoadingOverlay();
 setHeaderSVG();
 addNextArrowEventListener();
 addPreviousArrowEventListener();
@@ -181,7 +181,6 @@ export {
   createAyah,
   checkPuttingBasmala,
   checkContinuePlaying,
-  updateControllerPageNumber,
-  updateSessionStoragePageNumber,
+  updateControllerAndSessionPageNumber,
   nextAyah,
 };

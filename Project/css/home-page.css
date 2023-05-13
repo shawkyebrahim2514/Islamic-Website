@@ -1,4 +1,4 @@
-/* Style of the header */
+@import url("./Hijri-timing.css");
 
 main {
   margin-top: 0;
@@ -7,6 +7,7 @@ main {
 header {
   background-image: url("../image/header-image1.jpg");
   background-size: cover;
+  background-position: center;
   height: 100dvh;
   display: grid;
   justify-content: center;
@@ -23,7 +24,7 @@ header .container {
 }
 
 header h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 header::before {
@@ -51,7 +52,8 @@ img {
   width: 90%;
 }
 
-section > .container > .content, section > .container.content {
+section > .container > .content,
+section > .container.content {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -78,4 +80,3 @@ article {
     width: 70%;
   }
 }
-

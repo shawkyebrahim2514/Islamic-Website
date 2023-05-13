@@ -1,82 +1,7 @@
+@import url("./quran-player.css");
+
 body {
   text-align: center;
-}
-
-section.quran-player > .container {
-  border: 2px solid var(--dark);
-  margin: 10px auto;
-  padding: 0;
-  width: 96%;
-  display: grid;
-  gap: 20px;
-}
-
-section.quran-player header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 0 0;
-  gap: 10px;
-  flex-direction: column;
-  background-color: var(--dark);
-}
-
-section.quran-player header section.selections select {
-  padding: 5px 0;
-  text-align: center;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
-}
-
-section.quran-player header section.quran-text-surahs {
-  display: flex;
-  justify-content: space-around;
-  font-size: 1.3rem;
-  background: #e5e5e5;
-  width: 100%;
-  padding: 5px 0;
-}
-
-section.quran-player section.quran-text {
-  font-size: 1.8rem;
-  direction: rtl;
-  padding: 0 10px;
-}
-
-section.quran-player section.quran-text p.ayah-text {
-  display: inline;
-  cursor: pointer;
-  padding: 5px 0;
-  line-height: 48px;
-}
-
-section.quran-player section.quran-text p.ayah-text:hover {
-  background-color: #eee;
-}
-
-section.quran-player section.quran-text p.ayah-text.active {
-  background-color: var(--orange-1);
-  color: var(--light);
-}
-
-span.ayah-symbol-number {
-  font-size: 0.88rem;
-  font-weight: bold;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 36px;
-  position: relative;
-  top: -6px;
-  line-height: 36px;
-}
-
-span.ayah-symbol-number svg {
-  position: absolute;
-}
-
-section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
-  color: var(--light);
 }
 
 .controllers {
@@ -84,18 +9,12 @@ section.quran-player section.quran-text p.ayah-text.active span.ayah-number {
   justify-content: space-between;
   margin-top: 0;
   color: #444;
-}
-
-.quran-player footer {
-  padding: 0;
-}
-
-.quran-player .quran-text .basmala:not(:first-child) {
-  margin-top: 20px;
+  gap: 0;
 }
 
 .controllers .prev-next-controller {
-  margin-bottom: 10px;
+  background: #e5e5e5;
+  padding: 10px 0;
 }
 
 section.tafsir .container {

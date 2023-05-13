@@ -1,0 +1,28 @@
+/* Controllers style */
+.controllers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  font-size: 2.2rem;
+  color: var(--orange-1);
+  gap: 5px;
+  flex-direction: column;
+}
+
+.controllers .prev-next-controller {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  width: 100%;
+}
+
+.controllers .prev-next-controller span {
+  font-size: 1.4rem;
+}
+
+.controllers i {
+  display: inline-block;
+  cursor: pointer;
+}

@@ -1,16 +1,19 @@
 .audio-player {
+  --dark-1: #444;
+  --dark-2: #a2a2a2;
+  --white-1: white;
   height: 50px;
-  background: #444;
-  color: white;
+  background: var(--dark-1);
+  color: var(--white-1);
   overflow: hidden;
   display: grid;
   grid-template-rows: 6px auto;
-  border: 2px solid #444;
+  border: 2px solid var(--dark-1);
   font-size: 1.3rem;
   width: 100%;
 }
 .audio-player .timeline {
-  background: white;
+  background: var(--white-1);
   width: 100%;
   position: relative;
   cursor: pointer;
@@ -76,13 +79,13 @@
   z-index: -1;
   width: 0;
   height: 15px;
-  background: white;
+  background: var(--white-1);
   box-shadow: 0 0 20px #000a;
   transition: 0.25s;
 }
 
 .audio-player .controls .volume-container .volume-slider .volume-percentage {
-  background: var(--orange-1);
+  background: var(--gradient);
   height: 100%;
   width: 75%;
 }

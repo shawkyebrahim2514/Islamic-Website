@@ -6,6 +6,7 @@ import {
   getQuranInfo,
 } from "../model/Holy-Quran.js";
 import * as util from "../js/Holy-Quran.js";
+import { hideLoadingOverlay } from "../js/common-functions.js";
 
 async function setQuranPlayer() {
   let quranInfo = await getQuranInfo();
@@ -20,8 +21,7 @@ document
     util.updateQuranTextSurahs(pageAyahs.surahs);
     setQuranText(pageAyahs);
     util.checkContinuePlaying();
-    util.updateControllerPageNumber(pageSelectionNumber);
-    util.updateSessionStoragePageNumber(pageSelectionNumber);
+    util.updateControllerAndSessionPageNumber(pageSelectionNumber);
   });
 
 async function setQuranText(quranAyahs) {
@@ -69,3 +69,4 @@ async function updateTafsirSection(surahNumber, ayahNumberInSurah) {
 
 await setQuranPlayer();
 await updateTafsirSection(1, 1);
+hideLoadingOverlay();

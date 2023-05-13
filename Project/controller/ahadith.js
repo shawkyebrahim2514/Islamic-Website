@@ -1,5 +1,6 @@
 import * as util from "../js/ahadith.js";
 import { getAhadithNarrators } from "../model/ahadith.js";
+import { hideLoadingOverlay } from "../js/common-functions.js";
 
 async function setAdahithNarrators() {
   let narratorsList = await getAhadithNarrators();
@@ -8,3 +9,4 @@ async function setAdahithNarrators() {
 
 await setAdahithNarrators();
 util.clickOnFirstNarrator();
+hideLoadingOverlay();

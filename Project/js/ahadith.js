@@ -109,11 +109,6 @@ function clickOnFirstNarrator() {
     .firstElementChild.dispatchEvent(new Event("click"));
 }
 
-function displayLoadingOverlay() {
-  document.querySelector(".loading-overlay").style.display = "none";
-}
-
-displayLoadingOverlay();
 addMoreBtnEventListener();
 export {
   updateNarratorsSection,

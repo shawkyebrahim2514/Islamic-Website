@@ -4,6 +4,7 @@ import {
   getGregorianToHijriMonthDate,
 } from "../model/Hijri-calendar.js";
 import * as util from "../js/Hijri-calendar.js";
+import { hideLoadingOverlay } from "../js/common-functions.js";
 
 document.querySelector("input").addEventListener("change", async function () {
   let daysContent = document.querySelector(
@@ -48,3 +49,4 @@ function addDayElementEventListener(dayElement) {
 
 setHijriSectionContent();
 util.setDefaultDateInput();
+hideLoadingOverlay();

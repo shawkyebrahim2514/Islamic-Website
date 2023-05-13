@@ -1,6 +1,7 @@
 import { getAyahAndTranslation } from "../model/Holy-Quran.js";
 import { getBasmalaSVG } from "../js/svg-elements.js";
 import { setHijriSectionContent } from "./Hijri-timing.js";
+import { hideLoadingOverlay } from "../js/common-functions.js";
 
 // Set header's content
 async function setHeaderContent() {
@@ -40,4 +41,4 @@ await setHijriSectionContent();
 await setSecondSectionContent();
 await setThirdSectionContent();
 await setFourthSectionContent();
-document.querySelector(".loading-overlay").style.display = "none";
+hideLoadingOverlay();

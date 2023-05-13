@@ -80,9 +80,4 @@ function clickOnFirstAdhkar() {
     .firstElementChild.dispatchEvent(new Event("click"));
 }
 
-function displayLoadingOverlay() {
-  document.querySelector(".loading-overlay").style.display = "none";
-}
-
-displayLoadingOverlay();
 export { setAdhkarCardsSection, clickOnFirstAdhkar };
