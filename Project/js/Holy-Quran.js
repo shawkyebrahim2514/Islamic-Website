@@ -80,6 +80,16 @@ function createAyah(ayah) {
   return newAyah;
 }
 
+function checkPuttingSurahName(ayahNumberInSurah) {
+  if (ayahNumberInSurah == 1) {
+    let surahName = document.createElement("p");
+    surahName.classList.add("surah-name");
+    return surahName;
+  } else {
+    return null;
+  }
+}
+
 function checkPuttingBasmala(ayahNumberInSurah, ayahPageNumber) {
   if (ayahNumberInSurah == 1 && ayahPageNumber != 1 && ayahPageNumber != 187) {
     let basmala = document.createElement("p");
@@ -179,6 +189,7 @@ export {
   updateTafsirSection,
   activeAyah,
   createAyah,
+  checkPuttingSurahName,
   checkPuttingBasmala,
   checkContinuePlaying,
   updateControllerAndSessionPageNumber,

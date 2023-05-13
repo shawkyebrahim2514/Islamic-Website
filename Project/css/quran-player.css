@@ -84,3 +84,32 @@ section.quran-player footer {
 section.quran-player .quran-text .basmala:not(:first-child) {
   margin-top: 20px;
 }
+
+section.quran-player .quran-text .surah-name {
+  position: relative;
+  color: var(--dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0;
+  background-color: #e5e5e5;
+  max-width: 480px;
+  margin: 0 auto;
+  border-radius: 18px;
+  border: 2px solid var(--dark);
+  font-family: alQuranFont;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+section.quran-player .quran-text .surah-name:not(:first-child) {
+  margin-top: 20px;
+}
+
+section.quran-player .quran-text .surah-name:has(+ :not(.basmala)) {
+  margin-bottom: 20px;
+}
+
+section.quran-player .quran-text .surah-name svg {
+  position: absolute;
+}

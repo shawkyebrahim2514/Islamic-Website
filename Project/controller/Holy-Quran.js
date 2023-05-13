@@ -7,6 +7,7 @@ import {
 } from "../model/Holy-Quran.js";
 import * as util from "../js/Holy-Quran.js";
 import { hideLoadingOverlay } from "../js/common-functions.js";
+import { getSurahDecorationSVG } from "../js/svg-elements.js";
 
 async function setQuranPlayer() {
   let quranInfo = await getQuranInfo();
@@ -30,10 +31,15 @@ async function setQuranText(quranAyahs) {
   for (let ayah of quranAyahs.ayahs) {
     let ayahNumberInSurah = ayah.numberInSurah;
     let ayahPageNumber = ayah.page;
-    let basmala = util.checkPuttingBasmala(ayahNumberInSurah, ayahPageNumber);
-    if (basmala) {
-      quranAyahsContainer.appendChild(basmala);
-      ayah.text = ayah.text.slice(38);
+    let surahName = util.checkPuttingSurahName(ayahNumberInSurah);
+    if (surahName) {
+      surahName.innerHTML = `${ayah.surah.name}  ${getSurahDecorationSVG()}`;
+      quranAyahsContainer.appendChild(surahName);
+      let basmala = util.checkPuttingBasmala(ayahNumberInSurah, ayahPageNumber);
+      if (basmala) {
+        quranAyahsContainer.appendChild(basmala);
+        ayah.text = ayah.text.slice(38);
+      }
     }
     let newAyah = createAyah(ayah);
     quranAyahsContainer.appendChild(newAyah);
