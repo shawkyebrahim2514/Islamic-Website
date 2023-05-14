@@ -19,19 +19,56 @@ section.quran-player header {
   background-color: var(--dark);
 }
 
-section.quran-player header section.selections {
+.quran-player section.quran-selections {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
+  font-size: 1rem;
 }
 
-section.quran-player header section.selections select {
-  padding: 5px 0;
-  text-align: center;
-  border-radius: var(--border-radius);
-  font-size: 1rem;
+.quran-player section.quran-selections > div {
+  background-color: white;
+  padding: 5px 15px;
+  width: 280px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+}
+
+.quran-player section.quran-selections .selection-list {
+  display: none;
+  position: absolute;
+  top: 105%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  overflow: hidden;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.show {
+  display: block !important;
+}
+
+.selected {
+  color: var(--light);
+  background-color: var(--orange-2);
+}
+
+.quran-player section.quran-selections .selection-list p {
+  padding: 5px 15px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.quran-player section.quran-selections .selection-list p:hover {
+  background-color: #eee;
 }
 
 section.quran-player header section.quran-text-surahs {
@@ -64,7 +101,6 @@ section.quran-player section.quran-text p.ayah-text.active {
   background-color: var(--orange-2);
   color: var(--light);
   position: relative;
-  z-index: 2;
 }
 
 span.ayah-symbol-number {

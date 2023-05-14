@@ -1,12 +1,8 @@
 import { createCircleLoading } from "../js/components.js";
 
 let dateInput = document.querySelector("input");
-function setDefaultDateInput() {
-  let date = JSON.parse(sessionStorage.HijriCalnderPageDate);
-  let monthYearDate = `${date.year}-${date.month}`;
-  dateInput.value = monthYearDate;
-  dateInput.dispatchEvent(new Event("change"));
-}
+
+// Used in addDateInputEventListener() and updateDaysContent()
 
 function removeAllChildrenOf(element) {
   element.innerHTML = "";
@@ -19,10 +15,18 @@ function updateHijriCalnderPageDateWith(newValue) {
   sessionStorage.HijriCalnderPageDate = JSON.stringify(hijriCalnderPageDate);
 }
 
+// Used in updateDaysContent()
+
 function addCircleLoaderTo(daysContent) {
   let circleLoader = createCircleLoading();
   daysContent.appendChild(circleLoader);
 }
+
+function setFullDateHeading(daysContent) {
+  daysContent.previousElementSibling.textContent = `${days[0].gregorian.month.en} ${days[0].gregorian.year}`;
+}
+
+// Used in createDayCard()
 
 function createDayCard(day) {
   let dayElement = document.createElement("div");
@@ -35,6 +39,8 @@ function createDayCard(day) {
   `;
   return dayElement;
 }
+
+// Used in addDayElementEventListener()
 
 function updateGregorianHijrioverlay(fullDate) {
   document.querySelector(".Gregorian-Hijri-overlay").style.display = "flex";
@@ -76,6 +82,17 @@ function createPrayerRow(prayer, prayerTime) {
     <span>${prayerTime}</span>`;
   return prayerRow;
 }
+
+// Will be executed globally in the controller
+
+function setDefaultDateInput() {
+  let date = JSON.parse(sessionStorage.HijriCalnderPageDate);
+  let monthYearDate = `${date.year}-${date.month}`;
+  dateInput.value = monthYearDate;
+  dateInput.dispatchEvent(new Event("change"));
+}
+
+// Will be executed globally here
 
 function addGregorianHijriOverlayEventListener() {
   let gregorianHijriOverlay = document.querySelector(
@@ -127,4 +144,5 @@ export {
   setOverlayGregorianField,
   setOverlayHijriField,
   setOverlayPrayerTimings,
+  setFullDateHeading,
 };

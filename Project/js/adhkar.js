@@ -74,6 +74,8 @@ function addCounterEventListener(counter) {
   });
 }
 
+// ------------------------------
+
 function clickOnFirstAdhkar() {
   document
     .querySelector(".adhkar-names")

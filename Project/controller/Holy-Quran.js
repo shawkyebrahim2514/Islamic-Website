@@ -1,35 +1,38 @@
 import { changeAudio } from "../js/audio-player.js";
-import {
-  getAyahAndTranslation,
-  getAyahAudio,
-  getPageAyahs,
-  getQuranInfo,
-  getSurahPage,
-} from "../model/Holy-Quran.js";
+import * as model from "../model/Holy-Quran.js";
 import * as util from "../js/Holy-Quran.js";
 import { hideLoadingOverlay } from "../js/common-functions.js";
 import { getSurahDecorationSVG } from "../js/svg-elements.js";
 
 async function setQuranPlayer() {
-  let quranInfo = await getQuranInfo();
-  util.setQuranPageOptions(quranInfo);
-  util.setQuranSurahOptions(quranInfo);
+  let quranInfo = await model.getQuranInfo();
+  setQuranPageSelections(quranInfo);
+  setQuranSurahSelections(quranInfo);
 }
 
-document
-  .querySelector(".quran-player select.quran-page")
-  .addEventListener("change", async function () {
-    let pageSelectionNumber = this.value;
-    let pageAyahs = await getPageAyahs(pageSelectionNumber);
-    let selectedSurahNumber =
-      this.options[this.selectedIndex].getAttribute("data-surah-number");
+function setQuranPageSelections(quranInfo) {
+  let quranPageSelections = document.querySelector(
+    ".quran-player section.quran-selections .page-selection .selection-list"
+  );
+  for (let i = 0; i < 604; i++) {
+    let pageSelection = util.createQuranPageOption(quranInfo, i);
+    quranPageSelections.appendChild(pageSelection);
+    addPageSelectionEventListener(pageSelection);
+  }
+  util.setDefualtQuranPageOption(quranPageSelections);
+}
+
+function addPageSelectionEventListener(pageSelectionElement) {
+  pageSelectionElement.addEventListener("click", async function () {
+    let pageSelectionNumber = this.getAttribute("data-page-number");
+    let pageAyahs = await model.getPageAyahs(pageSelectionNumber);
     setQuranText(pageAyahs);
-    // get the data of attribute data-surah-number from the selected option
-    util.updateQuranSurahSelection(selectedSurahNumber);
-    util.updateQuranTextSurahs(pageAyahs.surahs);
-    util.checkContinuePlaying();
-    util.updateControllerAndSessionPageNumber(pageSelectionNumber);
+    util.updateAfterClickingPageSelection(
+      pageSelectionElement,
+      pageAyahs.surahs
+    );
   });
+}
 
 async function setQuranText(quranAyahs) {
   let quranAyahsContainer = document.querySelector(".quran-player .quran-text");
@@ -58,38 +61,48 @@ function createAyah(ayah) {
   return newAyah;
 }
 
-function addAyahClickEventListener(ayah) {
-  ayah.addEventListener("click", async function () {
-    // let ayahNumber = ayah.getAttribute("data-ayah-number");
-    let ayahNumberInSurah = ayah.getAttribute("data-ayah-in-surah-number");
-    let surahNumber = ayah.getAttribute("data-surah-number");
-    let audioURL = (await getAyahAudio(surahNumber, ayahNumberInSurah)).audio;
-    util.removeActiveAyahs();
-    util.activeAyah(ayah);
+function addAyahClickEventListener(ayahElement) {
+  ayahElement.addEventListener("click", async function () {
+    let ayahNumberInSurah = ayahElement.getAttribute(
+      "data-ayah-in-surah-number"
+    );
+    let surahNumber = ayahElement.getAttribute("data-surah-number");
+    let audioURL = (await model.getAyahAudio(surahNumber, ayahNumberInSurah))
+      .audio;
+    util.updateActiveAyah(ayahElement);
     updateTafsirSection(surahNumber, ayahNumberInSurah);
     changeAudio(audioURL);
   });
 }
 
 async function updateTafsirSection(surahNumber, ayahNumberInSurah) {
-  let ayahTranslation = await getAyahAndTranslation(
+  let ayahTranslation = await model.getAyahAndTranslation(
     surahNumber,
     ayahNumberInSurah
   );
   util.updateTafsirSection(ayahTranslation, ayahNumberInSurah);
 }
 
-document
-  .querySelector(".quran-player select.quran-surah")
-  .addEventListener("change", async function () {
-    console.log("surah changed");
-    let selectedSurahNumber = this.value;
-    let surahPage = await getSurahPage(selectedSurahNumber);
-    let pageSelection = document.querySelector(".quran-player select.quran-page");
-    pageSelection.selectedIndex = surahPage - 1;
-    pageSelection.dispatchEvent(new Event("change"));
-  });
+// Quran Surah Selections
 
+function setQuranSurahSelections(quranInfo) {
+  let quranSurahOptions = document.querySelector(
+    ".quran-player section.quran-selections .surah-selection .selection-list"
+  );
+  for (let i = 0; i < 114; i++) {
+    let newOption = util.createQuranSurahOption(quranInfo, i);
+    quranSurahOptions.appendChild(newOption);
+    addSurahSelectionEventListener(newOption);
+  }
+}
+
+function addSurahSelectionEventListener(surahSelectionElement) {
+  surahSelectionElement.addEventListener("click", async function () {
+    let selectedSurahNumber = this.getAttribute("data-surah-number");
+    let surahPageNumber = await model.getSurahPage(selectedSurahNumber);
+    util.clickOnPageSelection(surahPageNumber);
+  });
+}
 
 await setQuranPlayer();
 await updateTafsirSection(1, 1);
