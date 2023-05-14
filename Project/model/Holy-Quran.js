@@ -20,10 +20,21 @@ async function getSurahAyahs(surahNumber) {
   }
 }
 
-async function getAyahAudio(ayahNumber) {
+async function getSurahPage(surahNumber) {
+  try {
+    const response = await fetch(`https://api.alquran.cloud/v1/ayah/${surahNumber}:1`);
+    const json = await response.json();
+    console.log(json);
+    return json.data.page;
+  } catch (error) {
+    return new Error(error);
+  }
+}
+
+async function getAyahAudio(surahNumber, ayahNumberInSurah) {
   try {
     const response = await fetch(
-      `https://api.alquran.cloud/v1/ayah/${ayahNumber}/ar.alafasy`
+      `https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumberInSurah}/ar.alafasy`
     );
     const json = await response.json();
     return json.data;
@@ -71,5 +82,6 @@ export {
   getSurahAyahs,
   getAyahAudio,
   getPageAyahs,
+  getSurahPage,
   getAyahAndTranslation,
 };

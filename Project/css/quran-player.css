@@ -19,6 +19,14 @@ section.quran-player header {
   background-color: var(--dark);
 }
 
+section.quran-player header section.selections {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 section.quran-player header section.selections select {
   padding: 5px 0;
   text-align: center;

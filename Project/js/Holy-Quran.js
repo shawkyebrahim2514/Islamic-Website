@@ -5,7 +5,7 @@ import {
 } from "../js/svg-elements.js";
 
 function setQuranPageOptions(quranInfo) {
-  let quranPageOptions = document.querySelector(".quran-player .quran-page");
+  let quranPageOptions = document.querySelector(".quran-player select.quran-page");
   for (let i = 0; i < 604; i++) {
     let newOption = createQuranPageOption(quranInfo, i);
     quranPageOptions.appendChild(newOption);
@@ -18,15 +18,40 @@ function createQuranPageOption(quranInfo, index) {
   let surahNumber = quranInfo.pages.references[index].surah;
   let ayahNumber = quranInfo.pages.references[index].ayah;
   newOption.value = index + 1;
-  newOption.innerHTML = `Page ${index + 1}, ${
+  newOption.setAttribute("data-surah-number", surahNumber);
+  newOption.innerHTML = `صفحة ${index + 1}, ${
     quranInfo.surahs.references[surahNumber - 1].name
-  }, Ayah ${ayahNumber}`;
+  }, اية ${ayahNumber}`;
   return newOption;
 }
 
 function setDefualtQuranPageOption(quranPageOptions) {
   quranPageOptions.selectedIndex = sessionStorage.quranPage - 1;
   quranPageOptions.dispatchEvent(new Event("change"));
+}
+
+function setQuranSurahOptions(quranInfo) {
+  let quranSurahOptions = document.querySelector(".quran-player select.quran-surah");
+  for (let i = 0; i < 114; i++) {
+    let newOption = createQuranSurahOption(quranInfo, i);
+    quranSurahOptions.appendChild(newOption);
+  }
+  quranSurahOptions.selectedIndex = 0;
+}
+
+function createQuranSurahOption(quranInfo, index) {
+  let newOption = document.createElement("option");
+  let surahNameAr = quranInfo.surahs.references[index].name;
+  let numberOfAyahs = quranInfo.surahs.references[index].numberOfAyahs;
+  newOption.value = index + 1;
+  newOption.innerHTML = `${surahNameAr} - عدد الايات ${numberOfAyahs}`;
+  return newOption;
+}
+
+function updateQuranSurahSelection(surahNumber) {
+  console.log(surahNumber);
+  let quranSurahOptions = document.querySelector(".quran-player select.quran-surah");
+  quranSurahOptions.selectedIndex = surahNumber - 1;
 }
 
 function updateQuranTextSurahs(surahsInPage) {
@@ -193,6 +218,8 @@ addNextArrowEventListener();
 addPreviousArrowEventListener();
 export {
   setQuranPageOptions,
+  setQuranSurahOptions,
+  updateQuranSurahSelection,
   updateQuranTextSurahs,
   removeActiveAyahs,
   updateTafsirSection,
