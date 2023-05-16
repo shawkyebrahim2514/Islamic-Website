@@ -347,6 +347,14 @@ function setHeaderSVG() {
   document.querySelector("header").innerHTML = getQuranKaremSVG("250px");
 }
 
+function toggleSelectionSettings() {
+  let selectionSettings = document.querySelector(".quran-player section.settings");
+  selectionSettings.addEventListener("click", function () {
+    let settingsList = this.nextElementSibling;
+    settingsList.classList.toggle("show-flex");
+  });
+}
+
 function toggleQuranSelections() {
   let selections = document.querySelectorAll(
     ".quran-player section.quran-selections .selection-name"
@@ -360,6 +368,7 @@ function toggleQuranSelections() {
 }
 
 setHeaderSVG();
+toggleSelectionSettings();
 toggleQuranSelections();
 addNextArrowEventListener();
 addPreviousArrowEventListener();

@@ -19,14 +19,21 @@ section.quran-player header {
   background-color: var(--dark);
 }
 
+.quran-player section.settings {
+  color: var(--light);
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
 .quran-player section.quran-selections {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
   font-size: 1rem;
 }
+
 
 .quran-player section.quran-selections > div {
   background-color: white;
@@ -57,6 +64,10 @@ section.quran-player header {
 
 .show {
   display: block !important;
+}
+
+.show-flex {
+  display: flex !important;
 }
 
 .selected {
@@ -93,7 +104,7 @@ section.quran-player section.quran-text p.ayah-text {
   display: inline;
   cursor: pointer;
   padding: 15px 5px 15px 0;
-  line-height: 62px;
+  line-height: 61px;
 }
 
 section.quran-player section.quran-text p.ayah-text:hover {
