@@ -41,10 +41,10 @@ function updateAfterClickingPageSelection(pageSelectionElement, surahs) {
 }
 
 function updateQuranPageSelection(pageSelectionElement) {
-  let quranPageSelection = document.querySelector(
+  let quranPageSelectionName = document.querySelector(
     ".quran-player section.quran-selections .page-selection .selection-name"
   );
-  quranPageSelection.innerHTML = pageSelectionElement.innerHTML;
+  quranPageSelectionName.innerHTML = pageSelectionElement.innerHTML;
   addSelectedOption(pageSelectionElement);
   closeQuranSelections();
 }
@@ -168,6 +168,13 @@ function activeAyah(ayahElement) {
   ayahElement.classList.add("active");
 }
 
+function getCurrentAudioIdentifier() {
+  let currentAudio = document.querySelector(
+    ".quran-player section.quran-selections .audio-selection .selection-name"
+  );
+  return currentAudio.getAttribute("data-identifier");
+}
+
 // Used in updateTafsirSection()
 
 function updateTafsirSection(ayahTranslation, ayahNumberInSurah) {
@@ -208,6 +215,53 @@ function closeQuranSelections() {
   selectionLists.forEach((selectionList) => {
     selectionList.classList.remove("show");
   });
+}
+
+// used in setQuranAudio()
+
+function setDefaultQuranAudioOption(quranAudioSelections) {
+  // return the child that has the same identifier in the session.quranAudio
+  let defaultSelectionIndex = Array.from(
+    quranAudioSelections.children
+  ).findIndex((selection) => {
+    return (
+      selection.getAttribute("data-identifier") == sessionStorage.quranAudio
+    );
+  });
+  let defaultSelection = quranAudioSelections.children[defaultSelectionIndex];
+  defaultSelection.dispatchEvent(new Event("click"));
+}
+
+function createQuranAudioOption(quranAudio) {
+  let newSelection = document.createElement("p");
+  let AudioNameAr = quranAudio.name;
+  let audioIdentifier = quranAudio.identifier;
+  newSelection.setAttribute("data-identifier", audioIdentifier);
+  newSelection.innerHTML = `${AudioNameAr}`;
+  addAudioSelectionEventListener(newSelection);
+  return newSelection;
+}
+
+function addAudioSelectionEventListener(audioSelectionElement) {
+  let quranAudioSelectionName = document.querySelector(
+    ".quran-player section.quran-selections .audio-selection .selection-name"
+  );
+  let audioSelectionIdentifier =
+    audioSelectionElement.getAttribute("data-identifier");
+  audioSelectionElement.addEventListener("click", () => {
+    quranAudioSelectionName.innerHTML = audioSelectionElement.innerHTML;
+    quranAudioSelectionName.setAttribute(
+      "data-identifier",
+      audioSelectionIdentifier
+    );
+    updateQuranAudioInSessionStorage(audioSelectionIdentifier);
+    addSelectedOption(audioSelectionElement);
+    closeQuranSelections();
+  });
+}
+
+function updateQuranAudioInSessionStorage(audioSelectionIdentifier) {
+  sessionStorage.quranAudio = audioSelectionIdentifier;
 }
 
 // Used in the audio player file
@@ -295,11 +349,11 @@ function setHeaderSVG() {
 
 function toggleQuranSelections() {
   let selections = document.querySelectorAll(
-    ".quran-player section.quran-selections > div"
+    ".quran-player section.quran-selections .selection-name"
   );
   selections.forEach((selection) => {
     selection.addEventListener("click", function () {
-      let selectionList = this.querySelector(".selection-list");
+      let selectionList = this.nextElementSibling;
       selectionList.classList.toggle("show");
     });
   });
@@ -321,4 +375,7 @@ export {
   clickOnPageSelection,
   updateAfterClickingPageSelection,
   updateActiveAyah,
+  createQuranAudioOption,
+  getCurrentAudioIdentifier,
+  setDefaultQuranAudioOption,
 };

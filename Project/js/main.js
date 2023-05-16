@@ -80,6 +80,10 @@ if (!sessionStorage.quranPage) {
   sessionStorage.quranPage = 1;
 }
 
+if (!sessionStorage.quranAudio) {
+  sessionStorage.quranAudio = "ar.alafasy";
+}
+
 if (!sessionStorage.ahadith) {
   let ahadithInfo = {
     id: "bukhari",

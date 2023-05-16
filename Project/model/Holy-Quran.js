@@ -22,19 +22,20 @@ async function getSurahAyahs(surahNumber) {
 
 async function getSurahPage(surahNumber) {
   try {
-    const response = await fetch(`https://api.alquran.cloud/v1/ayah/${surahNumber}:1`);
+    const response = await fetch(
+      `https://api.alquran.cloud/v1/ayah/${surahNumber}:1`
+    );
     const json = await response.json();
-    console.log(json);
     return json.data.page;
   } catch (error) {
     return new Error(error);
   }
 }
 
-async function getAyahAudio(surahNumber, ayahNumberInSurah) {
+async function getAyahAudio(surahNumber, ayahNumberInSurah, identifier = "ar.alafasy") {
   try {
     const response = await fetch(
-      `https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumberInSurah}/ar.alafasy`
+      `https://api.alquran.cloud/v1/ayah/${surahNumber}:${ayahNumberInSurah}/${identifier}`
     );
     const json = await response.json();
     return json.data;
@@ -67,15 +68,17 @@ async function getAyahAndTranslation(surahNumber, ayahNumberInSurah) {
   }
 }
 
-// make a fetch function to a page number of a specific surah
-async function gethehr(surahNumber, pageNumber) {
-  let response = await fetch( // fetch the page number of a specific surah from the API
-    `https://api.alquran.cloud/v1/surah/${surahNumber}/en.asad?offset=${ pageNumber }&limit=1` // the API link to fetch the page number of a specific surah from the API
-  );
-  let data = await response.json(); // convert the response to json
-  return data.data.ayahs[0]; // return the data of the page number of a specific surah
+async function getQuranAudioList() {
+  try {
+    let response = await fetch(
+      "https://api.alquran.cloud/v1/edition?format=audio&language=ar&type=versebyverse"
+    );
+    let json = await response.json();
+    return json.data;
+  } catch (error) {
+    return new Error(error);
+  }
 }
-
 
 export {
   getQuranInfo,
@@ -84,4 +87,5 @@ export {
   getPageAyahs,
   getSurahPage,
   getAyahAndTranslation,
+  getQuranAudioList,
 };

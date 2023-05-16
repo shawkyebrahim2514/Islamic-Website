@@ -4,10 +4,13 @@ import * as util from "../js/Holy-Quran.js";
 import { hideLoadingOverlay } from "../js/common-functions.js";
 import { getSurahDecorationSVG } from "../js/svg-elements.js";
 
+// Load Quran info such as pages and surahs
+
 async function setQuranPlayer() {
   let quranInfo = await model.getQuranInfo();
   setQuranPageSelections(quranInfo);
   setQuranSurahSelections(quranInfo);
+  setQuranAudioSelections();
 }
 
 function setQuranPageSelections(quranInfo) {
@@ -67,8 +70,14 @@ function addAyahClickEventListener(ayahElement) {
       "data-ayah-in-surah-number"
     );
     let surahNumber = ayahElement.getAttribute("data-surah-number");
-    let audioURL = (await model.getAyahAudio(surahNumber, ayahNumberInSurah))
-      .audio;
+    let currentAudioIdentifier = util.getCurrentAudioIdentifier();
+    let audioURL = (
+      await model.getAyahAudio(
+        surahNumber,
+        ayahNumberInSurah,
+        currentAudioIdentifier
+      )
+    ).audio;
     util.updateActiveAyah(ayahElement);
     updateTafsirSection(surahNumber, ayahNumberInSurah);
     changeAudio(audioURL);
@@ -102,6 +111,20 @@ function addSurahSelectionEventListener(surahSelectionElement) {
     let surahPageNumber = await model.getSurahPage(selectedSurahNumber);
     util.clickOnPageSelection(surahPageNumber);
   });
+}
+
+// Quran Audio Selections
+
+async function setQuranAudioSelections() {
+  let quranAudioList = await model.getQuranAudioList();
+  let quranAudioOptions = document.querySelector(
+    ".quran-player section.quran-selections .audio-selection .selection-list"
+  );
+  for (let quranAudio of quranAudioList) {
+    let newOption = util.createQuranAudioOption(quranAudio);
+    quranAudioOptions.appendChild(newOption);
+  }
+  util.setDefaultQuranAudioOption(quranAudioOptions);
 }
 
 await setQuranPlayer();

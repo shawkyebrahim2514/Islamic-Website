@@ -30,11 +30,14 @@ section.quran-player header {
 
 .quran-player section.quran-selections > div {
   background-color: white;
-  padding: 5px 15px;
   width: 280px;
   border-radius: 5px;
   cursor: pointer;
   position: relative;
+}
+
+.quran-player section.quran-selections .selection-name {
+  padding: 5px 15px;
 }
 
 .quran-player section.quran-selections .selection-list {
@@ -58,7 +61,7 @@ section.quran-player header {
 
 .selected {
   color: var(--light);
-  background-color: var(--orange-2);
+  background-color: var(--orange-2) !important;
 }
 
 .quran-player section.quran-selections .selection-list p {
@@ -81,7 +84,7 @@ section.quran-player header section.quran-text-surahs {
 }
 
 section.quran-player section.quran-text {
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   direction: rtl;
   padding: 0 10px;
 }
@@ -90,7 +93,7 @@ section.quran-player section.quran-text p.ayah-text {
   display: inline;
   cursor: pointer;
   padding: 15px 5px 15px 0;
-  line-height: 63px;
+  line-height: 62px;
 }
 
 section.quran-player section.quran-text p.ayah-text:hover {
