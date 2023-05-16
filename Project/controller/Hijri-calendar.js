@@ -21,7 +21,7 @@ async function updateDaysContent(daysContent) {
   util.addCircleLoaderTo(daysContent);
   let days = await getGregorianToHijriMonthDate();
   util.removeAllChildrenOf(daysContent);
-  util.setFullDateHeading(daysContent);
+  util.setFullDateHeadingIn(days[0].gregorian, daysContent);
   loopOverDaysAndAppendTo(days, daysContent);
 }
 

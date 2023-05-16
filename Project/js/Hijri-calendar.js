@@ -22,8 +22,8 @@ function addCircleLoaderTo(daysContent) {
   daysContent.appendChild(circleLoader);
 }
 
-function setFullDateHeading(daysContent) {
-  daysContent.previousElementSibling.textContent = `${days[0].gregorian.month.en} ${days[0].gregorian.year}`;
+function setFullDateHeadingIn(hijriDate, daysContent) {
+  daysContent.previousElementSibling.textContent = `${hijriDate.month.en} ${hijriDate.year}`;
 }
 
 // Used in createDayCard()
@@ -144,5 +144,5 @@ export {
   setOverlayGregorianField,
   setOverlayHijriField,
   setOverlayPrayerTimings,
-  setFullDateHeading,
+  setFullDateHeadingIn,
 };
