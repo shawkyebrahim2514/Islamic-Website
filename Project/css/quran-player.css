@@ -153,7 +153,7 @@ section.quran-player .quran-text .surah-name {
   justify-content: center;
   padding: 4px 0;
   background-color: #e5e5e5;
-  max-width: 440px;
+  max-width: 375px;
   margin: 0 auto;
   border-radius: 18px;
   border: 2px solid var(--dark);

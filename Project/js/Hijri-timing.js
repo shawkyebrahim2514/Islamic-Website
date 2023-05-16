@@ -23,13 +23,11 @@ function setHijriSectionFullDate(currentDate) {
     "section:has(section.Hijri-timing) h2"
   );
   let HijriDate = document.createElement("span");
-  let GregorianDate = `
-          ${currentDate.gregorian.weekday},
+  let GregorianDate = `${currentDate.gregorian.weekday},
           ${currentDate.gregorian.day}
           ${currentDate.gregorian.month.en}
           ${currentDate.gregorian.year}`;
-  HijriDate.textContent = `(
-          ${currentDate.hijri.day}
+  HijriDate.textContent = `(${currentDate.hijri.day}
           ${currentDate.hijri.month.en}
           ${currentDate.hijri.year})`;
   fullSectionDate.innerHTML = `${GregorianDate} ${HijriDate.outerHTML}`;
