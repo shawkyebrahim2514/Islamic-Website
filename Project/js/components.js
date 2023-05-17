@@ -4,7 +4,9 @@ function createNavbar() {
   const nav = document.createElement("nav");
   nav.innerHTML = `
       <div class="container">
-        <section class="logo">Muslim</section>
+        <section class="logo">
+          <a href="index.html"><img src="../svg/logo.svg" alt="logo" /></a>
+        </section>
         <section class="menu-bars">
           <span class="bar"></span>
           <span class="bar"></span>
@@ -110,5 +112,5 @@ export {
   createOverlay,
   createScrollToTop,
   createCircleLoading,
-  createNavOverlay
+  createNavOverlay,
 };

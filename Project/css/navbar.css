@@ -28,6 +28,14 @@ nav section.logo {
   height: 100%;
   display: flex;
   align-items: center;
+  padding: 10px 0;
+  text-align: left;
+}
+
+nav section.logo :where(a, img) {
+  height: 100%;
+  border-radius: 0;
+  width: 85%;
 }
 
 nav ul.links {
@@ -84,7 +92,7 @@ nav .menu-bars.active span.bar:not(:first-child) {
   position: absolute;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 849px) {
   nav ul.links {
     display: block;
     position: absolute;

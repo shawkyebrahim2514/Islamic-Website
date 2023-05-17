@@ -20,7 +20,7 @@ async function fetchRangeOfAhadith(narratorName, from, to) {
   }
 }
 
-async function getSpecificAhadith(narratorName, hadithNumber) {
+async function getSpecificHadith(narratorName, hadithNumber) {
   try {
     let response = await fetch(
       `https://api.hadith.gading.dev/books/${narratorName}/${hadithNumber}`
@@ -32,4 +32,4 @@ async function getSpecificAhadith(narratorName, hadithNumber) {
   }
 }
 
-export { getAhadithNarrators, getSpecificAhadith, fetchRangeOfAhadith}
+export { getAhadithNarrators, getSpecificHadith, fetchRangeOfAhadith}

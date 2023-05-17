@@ -71,6 +71,10 @@ article {
   font-size: 1.2rem;
 }
 
+article h2, header h2 {
+  line-height: 45px;
+}
+
 @media (max-width: 819px) {
   article {
     width: 100%;
