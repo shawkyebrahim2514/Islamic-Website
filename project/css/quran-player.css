@@ -34,10 +34,9 @@ section.quran-player header {
   font-size: 1rem;
 }
 
-
 .quran-player section.quran-selections > div {
   background-color: white;
-  width: 280px;
+  width: 300px;
   border-radius: 5px;
   cursor: pointer;
   position: relative;
@@ -45,6 +44,7 @@ section.quran-player header {
 
 .quran-player section.quran-selections .selection-name {
   padding: 5px 15px;
+  direction: rtl;
 }
 
 .quran-player section.quran-selections .selection-list {
@@ -79,6 +79,8 @@ section.quran-player header {
   padding: 5px 15px;
   margin: 0;
   cursor: pointer;
+  direction: rtl;
+  text-align: right;
 }
 
 .quran-player section.quran-selections .selection-list p:hover {

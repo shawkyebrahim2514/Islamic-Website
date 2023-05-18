@@ -14,7 +14,7 @@ function createQuranPageOption(quranInfo, index) {
   newSelection.setAttribute("data-surah-number", surahNumber);
   newSelection.innerHTML = `صفحة ${index + 1}, ${
     quranInfo.surahs.references[surahNumber - 1].name
-  }, اية ${ayahNumber}`;
+  }, آية ${ayahNumber}`;
   return newSelection;
 }
 
@@ -194,7 +194,7 @@ function createQuranSurahOption(quranInfo, index) {
   let surahNameAr = quranInfo.surahs.references[index].name;
   let numberOfAyahs = quranInfo.surahs.references[index].numberOfAyahs;
   newSelection.setAttribute("data-surah-number", index + 1);
-  newSelection.innerHTML = `${surahNameAr} - عدد الايات ${numberOfAyahs}`;
+  newSelection.innerHTML = `${index + 1} - ${surahNameAr} - عدد الآيات ${numberOfAyahs}`;
   return newSelection;
 }
 
