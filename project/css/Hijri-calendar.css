@@ -23,7 +23,7 @@ input {
 }
 
 section:has(input) + section h2 {
-  color: var(--orange-1);
+  color: var(--main-color-1);
   position: relative;
 }
 
@@ -41,7 +41,7 @@ section:has(input) + section h2::after {
   width: 20%;
   height: 2px;
   top: 50%;
-  background-color: var(--orange-1);
+  background-color: var(--main-color-1);
 }
 
 section:has(input) + section h2::before {
@@ -57,9 +57,9 @@ section:has(input) + section h2::after {
   position: absolute;
   top: -10px;
   left: -10px;
-  /* background-color: var(--orange-1); */
+  /* background-color: var(--main-color-1); */
   background: var(--gradient);
-  color: var(--orange-3);
+  color: var(--main-color-3);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -70,7 +70,7 @@ section:has(input) + section h2::after {
 
 .card p:first-child {
   font-weight: bold;
-  color: var(--orange-1);
+  color: var(--main-color-1);
 }
 
 .card p:nth-child(2) {
@@ -114,14 +114,14 @@ section:has(input) + section h2::after {
 }
 
 .Gregorian-Hijri-overlay h3 {
-  /* background-color: var(--orange-1); */
+  /* background-color: var(--main-color-1); */
   background: var(--gradient);
-  color: var(--light);
+  color: var(--light-1);
   padding: 5px 10px;
 }
 
 .Gregorian-Hijri-overlay p {
-  background-color: var(--light);
+  background-color: var(--light-1);
   padding: 5px 10px;
 }
 
@@ -135,5 +135,5 @@ section:has(input) + section h2::after {
 }
 
 .prayer-timings > .row:first-of-type {
-  color: var(--orange-1);
+  color: var(--main-color-1);
 }

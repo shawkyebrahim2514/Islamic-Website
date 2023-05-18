@@ -53,7 +53,6 @@ function updateAhadithSection(result) {
 }
 
 function createHadithSection(hadith) {
-  console.log(hadith);
   let hadithSection = document.createElement("section");
   hadithSection.classList.add("hadith");
   hadithSection.setAttribute("data-number", hadith.number);

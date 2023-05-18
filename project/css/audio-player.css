@@ -1,14 +1,12 @@
 .audio-player {
-  --dark-1: #444;
-  --dark-2: #a2a2a2;
   --white-1: white;
   height: 50px;
-  background: var(--dark-1);
+  background: var(--dark-2);
   color: var(--white-1);
   overflow: hidden;
   display: grid;
   grid-template-rows: 6px auto;
-  border: 2px solid var(--dark-1);
+  border: 2px solid var(--dark-2);
   font-size: 1.3rem;
   width: 100%;
 }

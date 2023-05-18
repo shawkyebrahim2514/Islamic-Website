@@ -348,7 +348,9 @@ function setHeaderSVG() {
 }
 
 function toggleSelectionSettings() {
-  let selectionSettings = document.querySelector(".quran-player section.settings");
+  let selectionSettings = document.querySelector(
+    ".quran-player section.settings"
+  );
   selectionSettings.addEventListener("click", function () {
     let settingsList = this.nextElementSibling;
     settingsList.classList.toggle("show-flex");
@@ -363,8 +365,16 @@ function toggleQuranSelections() {
     selection.addEventListener("click", function () {
       let selectionList = this.nextElementSibling;
       selectionList.classList.toggle("show");
+      changeScrollingViewToSelectedOption(selectionList);
     });
   });
+}
+
+function changeScrollingViewToSelectedOption(selectionList) {
+  let selectedOption = selectionList.querySelector(".selected");
+  if (selectedOption) {
+    selectionList.scrollTop = selectedOption.offsetTop;
+  }
 }
 
 setHeaderSVG();

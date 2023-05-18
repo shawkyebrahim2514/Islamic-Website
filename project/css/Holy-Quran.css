@@ -8,7 +8,7 @@ body {
   font-size: 1.8rem;
   justify-content: space-between;
   margin-top: 0;
-  color: #444;
+  color: var(--dark-2);
   gap: 0;
 }
 
@@ -25,11 +25,11 @@ section.tafsir .container {
 }
 
 section.tafsir header {
-  color: var(--orange-1);
+  color: var(--main-color-1);
 }
 
 section.tafsir header span.ayah-number {
-  border-color: var(--orange-1);
+  border-color: var(--main-color-1);
 }
 
 section.tafsir section.tafsir-text {

@@ -9,7 +9,7 @@ section.loading {
 }
 
 header {
-  border-bottom: 2px solid var(--dark);
+  border-bottom: 2px solid var(--dark-1);
 }
 
 header,
@@ -43,7 +43,7 @@ main > section h2 {
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  /* background-color: var(--orange-1); */
+  /* background-color: var(--main-color-1); */
   background: var(--gradient);
   margin: 0 auto;
   display: flex;
@@ -62,8 +62,8 @@ main > section h2 {
   width: calc(var(--size) - 10px);
   height: calc(var(--size) - 10px);
   border-radius: 50%;
-  border: 3px solid var(--light);
-  color: var(--light);
+  border: 3px solid var(--light-1);
+  color: var(--light-1);
   display: block;
   display: flex;
   justify-content: center;

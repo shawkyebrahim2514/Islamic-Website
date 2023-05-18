@@ -6,7 +6,7 @@ section.Hijri-timing {
   gap: 10px;
   justify-content: space-around;
   align-content: center;
-  border: 2px solid var(--dark);
+  border: 2px solid var(--dark-1);
   border-radius: var(--border-radius);
   padding: 10px 20px 25px;
   height: 100%;
@@ -26,13 +26,13 @@ section.Hijri-timing .row {
 
 section.Hijri-timing .row:not(:first-child):hover {
   background: var(--gradient);
-  border-color: var(--orange-1);
-  color: var(--light);
+  border-color: var(--main-color-1);
+  color: var(--light-1);
 }
 
 section.Hijri-timing .row:first-child {
   border: none;
-  color: var(--orange-1);
+  color: var(--main-color-1);
   font-weight: 900;
   padding: 2px 10px;
   font-size: 1.4rem;

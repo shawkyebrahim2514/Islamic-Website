@@ -71,13 +71,12 @@ function addAyahClickEventListener(ayahElement) {
     );
     let surahNumber = ayahElement.getAttribute("data-surah-number");
     let currentAudioIdentifier = util.getCurrentAudioIdentifier();
-    let audioURL = (
-      await model.getAyahAudio(
-        surahNumber,
-        ayahNumberInSurah,
-        currentAudioIdentifier
-      )
-    ).audio;
+    let ayahAudioRespond = await model.getAyahAudio(
+      surahNumber,
+      ayahNumberInSurah,
+      currentAudioIdentifier
+    );
+    let audioURL = ayahAudioRespond.audioSecondary[0] ?? ayahAudioRespond.audio;
     util.updateActiveAyah(ayahElement);
     updateTafsirSection(surahNumber, ayahNumberInSurah);
     changeAudio(audioURL);

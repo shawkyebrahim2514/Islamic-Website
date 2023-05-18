@@ -20,15 +20,22 @@
 */
 
 :root {
+  --main-color-1: var(--orange-1);
+  --main-color-2: var(--orange-2);
+  --main-color-3: var(--orange-3);
   --orange-1: #b9864d;
   --orange-2: #bf9759;
   --orange-3: #fff3ea;
-  --light: #ffffff;
-  --dark: #444;
+  --light-1: #ffffff;
+  --light-2: #f5f5f5;
+  --light-3: #ebebeb;
+  --dark-1: #222;
+  --dark-2: #444;
+  --dark-3: #666;
   --border-radius: 12px;
-  --drop-shadow: drop-shadow(3px 3px 3px #170f052e);
+  --drop-shadow: drop-shadow(2px 2px 2px #170f052e);
   --transition: all 0.3s ease-in-out;
-  --gradient: linear-gradient(45deg, var(--orange-1), var(--orange-2));
+  --gradient: linear-gradient(45deg, var(--main-color-1), var(--main-color-2));
 }
 
 html {
@@ -42,17 +49,17 @@ html {
 }
 
 ::selection {
-  background-color: var(--orange-2);
-  color: var(--light);
+  background-color: var(--main-color-2);
+  color: var(--light-1);
 }
 
 body {
-  color: var(--dark);
+  color: var(--dark-1);
 }
 
 a {
   text-decoration: none;
-  color: var(--light);
+  color: var(--light-2);
 }
 
 img {
@@ -65,7 +72,7 @@ img {
 /* Style of cards */
 .card {
   counter-increment: cardCounter;
-  background-color: var(--orange-3);
+  background-color: var(--main-color-3);
   padding: 20px 35px;
   border-radius: var(--border-radius);
   filter: var(--drop-shadow);
@@ -86,13 +93,14 @@ img {
   display: inline-block;
   background: var(--gradient);
   border-radius: var(--border-radius);
-  color: var(--light);
+  color: var(--light-1);
   cursor: pointer;
   font-weight: 500;
   font-size: 1.2rem;
   padding: 12px 22px;
   text-align: center;
   transition: var(--transition);
+  filter: var(--drop-shadow);
 }
 
 .btn:hover {
@@ -108,7 +116,7 @@ img {
   position: fixed;
   top: 0;
   left: 0;
-  background: var(--orange-3);
+  background: var(--main-color-3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +132,7 @@ img {
   right: 20px;
   z-index: 10;
   background: var(--gradient);
-  color: var(--light);
+  color: var(--light-1);
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
@@ -162,7 +170,7 @@ main > section {
 }
 
 main > section:nth-of-type(2n) {
-  background-color: var(--orange-3);
+  background-color: var(--main-color-3);
 }
 
 main > section > .container > h2 {
@@ -171,7 +179,7 @@ main > section > .container > h2 {
 }
 
 main > section > .container > h2 span {
-  color: var(--orange-1);
+  color: var(--main-color-1);
 }
 
 main > section > .container > h2 {

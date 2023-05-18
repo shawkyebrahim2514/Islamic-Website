@@ -2,7 +2,7 @@
   width: calc(var(--size) - 5px);
   height: calc(var(--size) - 5px);
   border: 5px solid #e2e2e2;
-  border-bottom-color: var(--dark);
+  border-bottom-color: var(--dark-1);
   border-radius: 50%;
   display: inline-block;
   box-sizing: border-box;
@@ -14,7 +14,7 @@ div:has(> .loader) {
   width: var(--size);
   height: var(--size);
   display: inline-block;
-  background-color: var(--light);
+  background-color: var(--light-1);
   filter: var(--drop-shadow);
   position: relative;
   border-radius: 50%;

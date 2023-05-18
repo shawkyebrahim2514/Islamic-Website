@@ -5,7 +5,7 @@
   align-items: center;
   margin-top: 40px;
   font-size: 2.2rem;
-  color: var(--orange-1);
+  color: var(--main-color-1);
   gap: 5px;
   flex-direction: column;
 }
