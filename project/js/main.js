@@ -43,17 +43,19 @@ function getDate() {
 }
 
 async function getLocation() {
-  let locationRequest = await fetch("http://ip-api.com/json/?fields=lat,lon");
+  let locationRequest = await fetch("https://ipinfo.io/41.44.83.12?token=87c42456f0ae82");
   return await locationRequest.json();
 }
 
 if (!localStorage.location) {
-  let location = await getLocation();
+  let locationRequest = await getLocation();
+  let [latitude, longitude] = locationRequest.loc.split(",");
   let userLocation = {
-    latitude: location.lat,
-    longitude: location.lon,
+    latitude,
+    longitude
   };
   localStorage.location = JSON.stringify(userLocation);
+  location.reload();
 }
 
 if (!sessionStorage.date) {
