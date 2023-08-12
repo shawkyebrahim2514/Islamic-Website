@@ -1,4 +1,31 @@
-import { nextAyah } from "./Holy-Quran.js";
+function nextAyah() {
+  let activeAyah = document.querySelector(
+    ".quran-player .quran-text .ayah-text.active"
+  );
+  if (activeAyah == null) return;
+  if (activeAyah.nextElementSibling) {
+    let nextAyahElement = getNextAyahElement(activeAyah);
+    nextAyahElement.click();
+  } else {
+    document
+      .querySelector(".quran-player .controllers .prev-next-controller .next")
+      .dispatchEvent(new Event("click"));
+    document
+      .querySelector(".quran-player .quran-text")
+      .setAttribute("data-continue-playing", "true");
+  }
+}
+
+function getNextAyahElement(activeAyah) {
+  activeAyah = activeAyah.nextElementSibling;
+  while (
+    activeAyah.classList.contains("basmala") ||
+    activeAyah.classList.contains("surah-name")
+  ) {
+    activeAyah = activeAyah.nextElementSibling;
+  }
+  return activeAyah;
+}
 
 const audioPlayer = document.querySelector(".audio-player");
 const playBtn = audioPlayer.querySelector(".controls .toggle-play");
@@ -7,7 +34,7 @@ let audio = new Audio(
   "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1.mp3"
 );
 
-export function changeAudio(url) {
+function changeAudio(url) {
   audio.pause();
   audio.src = url;
   playBtn.dispatchEvent(new Event("click"));
@@ -115,3 +142,5 @@ function getTimeCodeFromNum(num) {
     seconds % 60
   ).padStart(2, 0)}`;
 }
+
+export { changeAudio };

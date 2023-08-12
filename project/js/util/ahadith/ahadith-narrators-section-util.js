@@ -1,4 +1,4 @@
-import { createCircleLoading } from "./components.js";
+import { createCircleLoading } from "../components.js";
 
 let currentNarratorName;
 let moreBtn = document.querySelector(".more-btn");

@@ -1,4 +1,4 @@
-import { getGregorianHijriFullDateAndPrayersTime } from "../../model/Hijri-calendar.js";
+import { getGregorianHijriFullDateAndPrayersTime } from "../../model/hijri-calendar.js";
 
 function setHijriTimings(prayerTimings) {
     let fullSectionDate = document.querySelector(
