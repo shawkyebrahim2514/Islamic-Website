@@ -1,7 +1,7 @@
 // for full day date and prayers time
 async function fetchGregorianToHijriFullDate(date) {
   let fullDate = `${date.day}-${date.month}-${date.year}`;
-  let location = JSON.parse(sessionStorage.userLocation);
+  let location = JSON.parse(localStorage.location);
   try {
     let response = await fetch(
       `https://api.aladhan.com/v1/timings/${fullDate}?latitude=${location.latitude}&longitude=${location.longitude}&method=5`

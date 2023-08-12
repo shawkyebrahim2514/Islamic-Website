@@ -5,7 +5,7 @@ import {
   createNavbar,
   createOverlay,
   createScrollToTop,
-} from "./components.js";
+} from "./util/components.js";
 
 // Define the main component
 
@@ -42,19 +42,18 @@ function getDate() {
   return `${day}-${month}-${year}`;
 }
 
-function getLocation() {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject);
-  });
+async function getLocation() {
+  let locationRequest = await fetch("http://ip-api.com/json/?fields=lat,lon");
+  return await locationRequest.json();
 }
 
-if (!sessionStorage.userLocation) {
+if (!localStorage.location) {
   let location = await getLocation();
   let userLocation = {
-    latitude: location.coords.latitude,
-    longitude: location.coords.longitude,
+    latitude: location.lat,
+    longitude: location.lon,
   };
-  sessionStorage.userLocation = JSON.stringify(userLocation);
+  localStorage.location = JSON.stringify(userLocation);
 }
 
 if (!sessionStorage.date) {
@@ -76,25 +75,12 @@ if (!sessionStorage.HijriCalnderPageDate) {
   sessionStorage.HijriCalnderPageDate = JSON.stringify(monthYearDate);
 }
 
-if (!sessionStorage.quranPage) {
-  sessionStorage.quranPage = 1;
+if (!localStorage.quranPage) {
+  localStorage.quranPage = 1;
 }
 
-if (!sessionStorage.quranAudio) {
-  sessionStorage.quranAudio = "ar.alafasy";
-}
-
-if (!sessionStorage.ahadith) {
-  let ahadithInfo = {
-    id: "bukhari",
-    from: 1,
-    to: 20,
-  };
-  sessionStorage.ahadith = JSON.stringify(ahadithInfo);
-}
-
-if (!sessionStorage.adhkar) {
-  sessionStorage.adhkar = "أذكار الصباح";
+if (!localStorage.quranAudio) {
+  localStorage.quranAudio = "ar.alafasy";
 }
 
 window.onscroll = function () {

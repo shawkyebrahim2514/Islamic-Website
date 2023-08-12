@@ -1,83 +1,66 @@
-import { createCircleLoading } from "../js/components.js";
+import * as util from "./util/ahadith.js";
+import { fetchRangeOfAhadith, getAhadithNarrators } from "../model/ahadith.js";
+import { hideLoadingOverlay } from "./util/common-functions.js";
 
-let currentNarratorName;
+let ahadithGenerator;
 let moreBtn = document.querySelector(".more-btn");
 
-// Used in createNewHadithCard()
+async function setAdahithNarrators() {
+  let narratorsList = await getAhadithNarrators();
+  updateNarratorsSection(narratorsList);
+}
 
-function createNarratorCard(hadith) {
-  let card = document.createElement("div");
-  card.classList.add("card");
-  card.setAttribute("data-id", hadith.id);
-  card.innerHTML = `
-      <h3 class="name">${hadith.name.slice(4)}</h3>
-      <p class="total-number">${hadith.available}</p>
-      `;
+function updateNarratorsSection(narratorsList) {
+  var narratorsSection = document.querySelector(".ahadith-narrators");
+  for (let hadith of narratorsList) {
+    let card = createNewHadithCard(hadith);
+    narratorsSection.appendChild(card);
+  }
+}
+
+function createNewHadithCard(hadith) {
+  let card = util.createNarratorCard(hadith);
+  addHadithCardEventListener(card);
   return card;
 }
 
-// Used in addHadithCardEventListener()
+function addHadithCardEventListener(card) {
+  card.addEventListener("click", async function () {
+    let cardNarratorID = card.getAttribute("data-id");
+    util.removeElementsBeforeMoreBtn();
+    updateGlobalVariables(card, cardNarratorID);
+    util.triggerMoreBtn();
+  });
+}
 
-function removeElementsBeforeMoreBtn() {
-  while (moreBtn.previousElementSibling) {
-    moreBtn.previousElementSibling.remove();
+function updateGlobalVariables(card, cardNarratorID) {
+  util.updateGlobalVariables(card);
+  ahadithGenerator = getRangeOfAhadith(cardNarratorID);
+}
+
+async function* getRangeOfAhadith(name) {
+  let from = 1;
+  let range = 10;
+  while (true) {
+    let to = from + range;
+    let ahadith = await fetchRangeOfAhadith(name, from, to);
+    if (ahadith.length === 0) break;
+    yield ahadith;
+    from = to + 1;
   }
 }
 
-function triggerMoreBtn() {
-  moreBtn.firstElementChild.dispatchEvent(new Event("click"));
+function addMoreBtnEventListener() {
+  moreBtn.firstElementChild.addEventListener("click", async function (e) {
+    e.preventDefault();
+    util.addCircleLoader();
+    let result = await ahadithGenerator.next();
+    util.removeLoadingSection();
+    util.updateAhadithSection(result.value);
+  });
 }
 
-// Used in updateGlobalVariables()
-
-function updateGlobalVariables(card) {
-  currentNarratorName = card.querySelector(".name").textContent;
-}
-
-// Used in addMoreBtnEventListener()
-
-function addCircleLoader() {
-  let circleLoader = createCircleLoading();
-  moreBtn.before(circleLoader);
-}
-
-function removeLoadingSection() {
-  moreBtn.previousElementSibling.remove();
-}
-
-function updateAhadithSection(result) {
-  for (let hadith of result.hadiths) {
-    let hadithSection = createHadithSection(hadith);
-    moreBtn.before(hadithSection);
-  }
-}
-
-function createHadithSection(hadith) {
-  let hadithSection = document.createElement("section");
-  hadithSection.classList.add("hadith");
-  hadithSection.setAttribute("data-number", hadith.number);
-  hadithSection.innerHTML = `
-      <h2 class="hadith-text">${hadith.arab}</h2>
-      <h4 class="hadith-narrator">${currentNarratorName}</h4>
-      `;
-  return hadithSection;
-}
-
-// Will be executed globally
-
-function clickOnFirstNarrator() {
-  document
-    .querySelector(".ahadith-narrators")
-    .firstElementChild.dispatchEvent(new Event("click"));
-}
-
-export {
-  removeElementsBeforeMoreBtn,
-  clickOnFirstNarrator,
-  createNarratorCard,
-  triggerMoreBtn,
-  updateGlobalVariables,
-  addCircleLoader,
-  removeLoadingSection,
-  updateAhadithSection,
-};
+await setAdahithNarrators();
+addMoreBtnEventListener();
+util.clickOnFirstNarrator();
+hideLoadingOverlay();

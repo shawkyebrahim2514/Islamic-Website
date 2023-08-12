@@ -69,6 +69,10 @@ img {
   border-radius: var(--border-radius);
 }
 
+svg {
+  fill: currentColor;
+}
+
 /* Style of cards */
 .card {
   counter-increment: cardCounter;

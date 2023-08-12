@@ -1,148 +1,59 @@
-import { createCircleLoading } from "../js/components.js";
+import { setHijriSectionContent } from "./util/Hijri-timing.js";
+import {
+  getGregorianHijriFullDateAndPrayersTime,
+  getGregorianToHijriMonthDate,
+} from "../model/Hijri-calendar.js";
+import * as util from "./util/Hijri-calendar.js";
+import { hideLoadingOverlay } from "./util/common-functions.js";
 
-let dateInput = document.querySelector("input");
-
-// Used in addDateInputEventListener() and updateDaysContent()
-
-function removeAllChildrenOf(element) {
-  element.innerHTML = "";
+function addDateInputEventListener() {
+  document.querySelector("input").addEventListener("change", async function () {
+    let daysContent = document.querySelector(
+      "section:has(input) + section .content"
+    );
+    util.removeAllChildrenOf(daysContent);
+    util.updateHijriCalnderPageDateWith(this.value);
+    updateDaysContent(daysContent);
+  });
 }
 
-function updateHijriCalnderPageDateWith(newValue) {
-  let hijriCalnderPageDate = JSON.parse(sessionStorage.HijriCalnderPageDate);
-  hijriCalnderPageDate.month = newValue.split("-")[1];
-  hijriCalnderPageDate.year = newValue.split("-")[0];
-  sessionStorage.HijriCalnderPageDate = JSON.stringify(hijriCalnderPageDate);
+async function updateDaysContent(daysContent) {
+  util.addCircleLoaderTo(daysContent);
+  let days = await getGregorianToHijriMonthDate();
+  util.removeAllChildrenOf(daysContent);
+  util.setFullDateHeadingIn(days[0].gregorian, daysContent);
+  loopOverDaysAndAppendTo(days, daysContent);
 }
 
-// Used in updateDaysContent()
-
-function addCircleLoaderTo(daysContent) {
-  let circleLoader = createCircleLoading();
-  daysContent.appendChild(circleLoader);
-}
-
-function setFullDateHeadingIn(hijriDate, daysContent) {
-  daysContent.previousElementSibling.textContent = `${hijriDate.month.en} ${hijriDate.year}`;
-}
-
-// Used in createDayCard()
-
-function createDayCard(day) {
-  let dayElement = document.createElement("div");
-  dayElement.classList.add("card");
-  dayElement.setAttribute("data-day", day.gregorian.date);
-  dayElement.innerHTML = `
-  <p>${day.gregorian.weekday.en} ${day.hijri.weekday.ar}</p>
-  <p>${day.hijri.day} ${day.hijri.month.ar} ${day.hijri.year}</p>
-  <p>${day.gregorian.day} ${day.gregorian.month.en} ${day.gregorian.year}</p>
-  `;
-  return dayElement;
-}
-
-// Used in addDayElementEventListener()
-
-function updateGregorianHijrioverlay(fullDate) {
-  document.querySelector(".Gregorian-Hijri-overlay").style.display = "flex";
-  setOverlayGregorianField(fullDate.date.gregorian);
-  setOverlayHijriField(fullDate.date.hijri);
-  setOverlayPrayerTimings(fullDate.prayerTimings);
-}
-
-function setOverlayGregorianField(gregorianDate) {
-  let gregorianField = document.querySelector(
-    ".Gregorian-Hijri-overlay .container div:first-of-type p"
-  );
-  gregorianField.textContent = `${gregorianDate.weekday}, ${gregorianDate.day} ${gregorianDate.month.en} ${gregorianDate.year}`;
-}
-
-function setOverlayHijriField(hijriDate) {
-  let hijriField = document.querySelector(
-    ".Gregorian-Hijri-overlay .container div:nth-of-type(2) p"
-  );
-  hijriField.textContent = `${hijriDate.weekday}, ${hijriDate.day} ${hijriDate.month.ar} ${hijriDate.year}`;
-}
-
-function setOverlayPrayerTimings(prayerTimings) {
-  let prayerTimingRows = document.querySelector(
-    ".Gregorian-Hijri-overlay .container div:nth-of-type(3) .timing-rows"
-  );
-  removeAllChildrenOf(prayerTimingRows);
-  for (let prayer in prayerTimings) {
-    let prayerRow = createPrayerRow(prayer, prayerTimings[prayer]);
-    prayerTimingRows.appendChild(prayerRow);
+function loopOverDaysAndAppendTo(days, daysContent) {
+  for (let day of days) {
+    let dayElement = createDayCard(day);
+    daysContent.appendChild(dayElement);
   }
 }
 
-function createPrayerRow(prayer, prayerTime) {
-  let prayerRow = document.createElement("p");
-  prayerRow.classList.add("row");
-  prayerRow.innerHTML = `
-    <span><i class="fa-regular fa-clock"></i> ${prayer}</span>
-    <span>${prayerTime}</span>`;
-  return prayerRow;
+function createDayCard(day) {
+  let dayElement = util.createDayCard(day);
+  addDayElementEventListener(dayElement);
+  return dayElement;
 }
 
-// Will be executed globally in the controller
-
-function setDefaultDateInput() {
-  let date = JSON.parse(sessionStorage.HijriCalnderPageDate);
-  let monthYearDate = `${date.year}-${date.month}`;
-  dateInput.value = monthYearDate;
-  dateInput.dispatchEvent(new Event("change"));
-}
-
-// Will be executed globally here
-
-function addGregorianHijriOverlayEventListener() {
-  let gregorianHijriOverlay = document.querySelector(
-    ".Gregorian-Hijri-overlay"
-  );
-  gregorianHijriOverlay.addEventListener("click", (event) => {
-    let gregorianHijriContent = document.querySelector(
-      ".Gregorian-Hijri-overlay .container"
-    );
-    if (!gregorianHijriContent.contains(event.target)) {
-      event.target.style.display = "none";
-    }
-  });
-}
-
-function addNextArrowEventListener() {
-  document.querySelector(".controllers .next").addEventListener("click", () => {
-    changeDateInput(1);
-    dateInput.dispatchEvent(new Event("change"));
-  });
-}
-
-function addPreviousArrowEventListener() {
-  document
-    .querySelector(".controllers .previous")
-    .addEventListener("click", () => {
-      changeDateInput(-1);
-      dateInput.dispatchEvent(new Event("change"));
+function addDayElementEventListener(dayElement) {
+  dayElement.addEventListener("click", async () => {
+    let dayAttachedWithElement = dayElement.getAttribute("data-day");
+    let day = dayAttachedWithElement.split("-")[0];
+    let month = dayAttachedWithElement.split("-")[1];
+    let year = dayAttachedWithElement.split("-")[2];
+    let fullDate = await getGregorianHijriFullDateAndPrayersTime({
+      day,
+      month,
+      year,
     });
+    util.updateGregorianHijrioverlay(fullDate);
+  });
 }
 
-function changeDateInput(number) {
-  let date = new Date(dateInput.value);
-  date.setMonth(date.getMonth() + number);
-  let dateString = date.toISOString().slice(0, 7);
-  dateInput.value = dateString;
-}
-
-addGregorianHijriOverlayEventListener();
-addNextArrowEventListener();
-addPreviousArrowEventListener();
-export {
-  setDefaultDateInput,
-  removeAllChildrenOf,
-  updateHijriCalnderPageDateWith,
-  addCircleLoaderTo,
-  createDayCard,
-  updateGregorianHijrioverlay,
-  setOverlayGregorianField,
-  setOverlayHijriField,
-  setOverlayPrayerTimings,
-  setFullDateHeadingIn,
-};
+addDateInputEventListener();
+setHijriSectionContent();
+util.setDefaultDateInput();
+hideLoadingOverlay();
