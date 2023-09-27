@@ -1,5 +1,5 @@
 import { getBasmalaSVG } from "./util/svg-elements.js";
-import { setHijriSectionContent } from "./util/Hijri-timing.js";
+import { setHijriSectionContent } from "./util/hijri-timing.js";
 import { hideLoadingOverlay } from "./util/common-functions.js";
 
 // Set header's content
