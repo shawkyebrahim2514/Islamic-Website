@@ -1,14 +1,36 @@
+import { Box, Container, Typography } from '@mui/material';
 import AdhkarContentSection from './AdhkarContentSection'
 import { v4 as uuid } from 'uuid';
 
 export default function AdhkarContent({ content }) {
     return (
-        <div>
-            {content ? content.map((item) => {
+        <Box sx={{
+            py: 2
+        }}>
+            {content ? content.map((item, index) => {
                 return (
-                    <AdhkarContentSection key={uuid()} data={item} />
+                    <Box component='section' key={uuid()} sx={{
+                        backgroundColor: index % 2 === 0 ? 'primary.light' : 'white',
+                        py: 4,
+                    }}>
+                        <Container maxWidth="lg" sx={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'column',
+                        }}>
+                            <AdhkarContentSection data={item} />
+                        </Container>
+                    </Box>
                 )
-            }) : <p>Choose any Adhkar</p>}
-        </div>
+            }) : (
+                <Typography variant="h6" component="h3" sx={{
+                    textAlign: 'center',
+                    lineHeight: '1.6',
+                }}>
+                    اختر ذكراً من القائمة
+                </Typography>
+            )}
+        </Box >
     )
 }

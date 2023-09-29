@@ -13,17 +13,16 @@ function QuranPlayerBody() {
     const { data, status, error } = useFetch({ url: pageURL }, [quranPlayerState.currentPage]);
 
     useEffect(() => {
-        if (isSuccess(status)) {
-            const firstAyahPageNumber = data.data.ayahs[0].number;
-            const lastAyahPageNumber = data.data.ayahs[data.data.ayahs.length - 1].number;
-            if (quranPlayerState.isAudioPlaying) {
-                dispatchQuranPlayerState(setActiveAyah(firstAyahPageNumber));
-            } else {
-                dispatchQuranPlayerState(setActiveAyah(null));
-            }
-            dispatchQuranPlayerState(setEndAyahPage(lastAyahPageNumber));
+        if (!data) return;
+        const firstAyahPageNumber = data.data.ayahs[0].number;
+        const lastAyahPageNumber = data.data.ayahs[data.data.ayahs.length - 1].number;
+        if (quranPlayerState.isAudioPlaying) {
+            dispatchQuranPlayerState(setActiveAyah(firstAyahPageNumber));
+        } else {
+            dispatchQuranPlayerState(setActiveAyah(null));
         }
-    }, [status, data]);
+        dispatchQuranPlayerState(setEndAyahPage(lastAyahPageNumber));
+    }, [data]);
 
     return (
         <main>

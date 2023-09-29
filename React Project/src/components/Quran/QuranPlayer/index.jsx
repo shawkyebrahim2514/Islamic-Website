@@ -6,6 +6,7 @@ import { reducer, initalState } from '../../../reducers/QuranPlayerReducer';
 import QuranPlayerContext from './QuranPlayerContext';
 import { useMemo } from 'react';
 import Tafsir from './Tafsir';
+import { Box } from '@mui/material';
 
 export default function QuranPlayer() {
     const [quranPlayerState, dispatchQuranPlayerState] = useImmerReducer(reducer, initalState);
@@ -13,10 +14,12 @@ export default function QuranPlayer() {
 
     return (
         <QuranPlayerContext.Provider value={contextValue}>
-            <QuranPlayerHeader />
-            <QuranPlayerBody />
-            <QuranPlayerFooter />
-            <Tafsir />
+            <Box component='main'>
+                <QuranPlayerHeader />
+                <QuranPlayerBody />
+                <QuranPlayerFooter />
+                <Tafsir />
+            </Box>
         </QuranPlayerContext.Provider>
     )
 }

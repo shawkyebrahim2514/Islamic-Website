@@ -16,7 +16,7 @@ export default function QuranPlayerFooter() {
         recitations[quranPlayerState.recitation].getAyahAudioURL(quranPlayerState.activeAyah).then((url) => {
             setAudioSrc(url);
         });
-    }, [quranPlayerState.activeAyah]);
+    }, [quranPlayerState.activeAyah, quranPlayerState.recitation]);
 
     const handleLoadedMetadata = useCallback(() => {
         const audio = audioRef.current;
@@ -37,8 +37,6 @@ export default function QuranPlayerFooter() {
     useEffect(() => {
         if (audioRef.current) {
             const audio = audioRef.current;
-            audio.src = audioSrc;
-            audio.load();
             audio.addEventListener('loadedmetadata', handleLoadedMetadata);
             audio.addEventListener('timeupdate', handleTimeUpdate);
             audio.addEventListener('ended', handleEnded);
@@ -48,6 +46,12 @@ export default function QuranPlayerFooter() {
                 audio.removeEventListener('ended', handleEnded);
             };
         }
+    }, []);
+
+    useEffect(() => {
+        const audio = audioRef.current;
+        audio.src = audioSrc;
+        audio.load();
     }, [audioSrc]);
 
     const handlePlayPause = useCallback(() => {

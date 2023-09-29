@@ -1,4 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;500;900&family=Tajawal:wght@300;500;900&display=swap');
+
+@font-face {
+    font-family: "Naskh";
+    src: url('https://www.islambook.com/files/fonts/uthmantn.eot');
+    /* IE9 Compat Modes */
+    src: local('KFGQPC Uthman Taha Naskh'), url('https://www.islambook.com/files/fonts/uthmantn.eot?iefix') format('eot'), /* IE6-IE8 */ url('https://www.islambook.com/files/fonts/uthmantn.otf') format('opentype'), url('https://www.islambook.com/files/fonts/uthmantn.woff') format('woff'), /* Modern Browsers */ url('https://www.islambook.com/files/fonts/uthmantn.ttf') format('truetype'), /* Safari, Android, iOS */ url('https://www.islambook.com/files/fonts/uthmantn.svg#svgFontName') format('svg');
+    /* Legacy iOS */
+}
+
 .active {
     background-color: #4CAF50;
     color: white;
+}
+
+body {
+    direction: rtl;
+}
+
+img {
+    width: 100px;
+}
+
+*  {
+    font-family: 'Tajawal', sans-serif !important;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.ayah-font {
+    font-family: "system-ui", sans-serif !important;
+    line-height: 1.8 !important;
 }

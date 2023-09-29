@@ -9,6 +9,7 @@ const homeSections = [
     {
         imageSrc: 'images/doaa-man.png',
         imageAlt: 'يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱذۡكُرُواْ ٱللَّهَ ذِكۡرٗا كَثِيرٗا',
+        description: 'يَٰٓأَيُّهَا ٱلَّذِينَ ءَامَنُواْ ٱذۡكُرُواْ ٱللَّهَ ذِكۡرٗا كَثِيرٗا',
         buttonText: 'الأذكار',
         targetURL: '/adhkar'
     },
