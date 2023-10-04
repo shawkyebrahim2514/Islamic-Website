@@ -1,22 +1,21 @@
-import { useState, useEffect, useRef, useCallback, useContext } from 'react';
+import { useState, useEffect, useRef, useCallback, useContext, useMemo, memo } from 'react';
 import QuranPlayerContext from '../QuranPlayerContext';
 import { nextActiveAyah, setAudioPlaying, toggleAudioPlaying } from '../../../../reducers/QuranPlayerActions';
 import recitations from '../../../../data/recitations';
+import { Box, Container, Divider } from '@mui/material';
+import PlayPauseButton from './PlayPauseButton';
+import VolumeSlider from './VolumeSlider';
+import TimeSlider from './TimeSlider';
+import TimeCounter from './TimeCounter';
+import StopButton from './StopButton';
 
-export default function QuranPlayerFooter() {
+function QuranPlayerFooter({ containerMaxWidth }) {
     const [quranPlayerState, dispatchQuranPlayerState] = useContext(QuranPlayerContext);
     const [currentTime, setCurrentTime] = useState(0);
     const [duration, setDuration] = useState(0);
     const [volume, setVolume] = useState(1);
-    const [audioSrc, setAudioSrc] = useState('');
+    const [audioSrc, setAudioSrc] = useState(null);
     const audioRef = useRef(null);
-
-    useEffect(() => {
-        if (!quranPlayerState.activeAyah) return;
-        recitations[quranPlayerState.recitation].getAyahAudioURL(quranPlayerState.activeAyah).then((url) => {
-            setAudioSrc(url);
-        });
-    }, [quranPlayerState.activeAyah, quranPlayerState.recitation]);
 
     const handleLoadedMetadata = useCallback(() => {
         const audio = audioRef.current;
@@ -34,7 +33,46 @@ export default function QuranPlayerFooter() {
         dispatchQuranPlayerState(nextActiveAyah());
     }, []);
 
+    const handlePlayPause = useCallback(() => {
+        if (audioSrc === null) return;
+        const audio = audioRef.current;
+        if (!audio.src) {
+            return;
+        }
+        if (quranPlayerState.isAudioPlaying) {
+            audio.pause();
+        } else {
+            audio.play();
+        }
+        dispatchQuranPlayerState(toggleAudioPlaying());
+    }, [quranPlayerState.isAudioPlaying]);
+
+    const handleStop = useCallback(() => {
+        const audio = audioRef.current;
+        audio.pause();
+        audio.currentTime = 0;
+        dispatchQuranPlayerState(setAudioPlaying(false));
+    }, []);
+
+    const handleTimeChange = useCallback((event) => {
+        const audio = audioRef.current;
+        audio.currentTime = event.target.value;
+        setCurrentTime(audio.currentTime);
+    }, []);
+
+    const commonColor = useMemo(() => {
+        return 'primary.contrastText';
+    }, []);
+
     useEffect(() => {
+        if (!quranPlayerState.activeAyah) return;
+        recitations[quranPlayerState.recitation].getAyahAudioURL(quranPlayerState.activeAyah).then((url) => {
+            setAudioSrc(url);
+        });
+    }, [quranPlayerState.activeAyah, quranPlayerState.recitation]);
+
+    useEffect(() => {
+        audioRef.current = new Audio();
         if (audioRef.current) {
             const audio = audioRef.current;
             audio.addEventListener('loadedmetadata', handleLoadedMetadata);
@@ -54,49 +92,68 @@ export default function QuranPlayerFooter() {
         audio.load();
     }, [audioSrc]);
 
-    const handlePlayPause = useCallback(() => {
+    useEffect(() => {
         const audio = audioRef.current;
-        if (quranPlayerState.isAudioPlaying) {
-            audio.pause();
-        } else {
-            audio.play();
-        }
-        dispatchQuranPlayerState(toggleAudioPlaying());
-    }, [quranPlayerState.isAudioPlaying]);
-
-    const handleStop = useCallback(() => {
-        const audio = audioRef.current;
-        audio.pause();
-        audio.currentTime = 0;
-        dispatchQuranPlayerState(setAudioPlaying(false));
-    }, []);
-
-    const handleVolumeChange = useCallback((event) => {
-        const audio = audioRef.current;
-        setVolume(event.target.value);
-        audio.volume = event.target.value;
-    }, []);
-
-    const handleTimeChange = useCallback((event) => {
-        const audio = audioRef.current;
-        audio.currentTime = event.target.value;
-        setCurrentTime(audio.currentTime);
-    }, []);
-
-    const formatTime = useCallback((time) => {
-        const minutes = Math.floor(time / 60);
-        const seconds = Math.floor(time % 60);
-        return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-    }, []);
+        audio.volume = volume;
+    }, [volume]);
 
     return (
-        <div>
-            <audio ref={audioRef} autoPlay />
-            <button onClick={handlePlayPause}>{quranPlayerState.isAudioPlaying ? 'Pause' : 'Play'}</button>
-            <button onClick={handleStop}>Stop</button>
-            <input type="range" min="0" max={duration} value={currentTime} onChange={handleTimeChange} />
-            <span>{formatTime(currentTime)}</span> / <span>{formatTime(duration)}</span>
-            <input type="range" min="0" max="1" step="0.1" value={volume} onChange={handleVolumeChange} />
-        </div>
+        <Box sx={{
+            backgroundColor: 'quranPlayer.main',
+            pb: 2,
+            position: 'sticky',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 1000,
+            filter: 'drop-shadow(0px -2px 8px #170f052e)',
+            overflowX: 'clip',
+        }}>
+            <Container maxWidth={containerMaxWidth} sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                pt: 2,
+                gap: '5px',
+                '& > *': {
+                    mr: 2,
+                },
+            }}>
+                <Box sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                }}>
+                    <PlayPauseButton
+                        handlePlayPause={handlePlayPause}
+                        commonColor={commonColor} />
+
+                    <Divider orientation="vertical" flexItem />
+
+                    <StopButton
+                        handleStop={handleStop}
+                        commonColor={commonColor} />
+
+                    <Divider orientation="vertical" flexItem />
+                </Box>
+
+                <VolumeSlider
+                    volume={volume}
+                    setVolume={setVolume}
+                    commonColor={commonColor} />
+
+                <TimeSlider
+                    currentTime={currentTime}
+                    duration={duration}
+                    handleTimeChange={handleTimeChange}
+                    commonColor={commonColor} />
+
+                <TimeCounter
+                    currentTime={currentTime}
+                    duration={duration}
+                    commonColor={commonColor} />
+            </Container>
+        </Box>
     );
 }
+
+export default memo(QuranPlayerFooter);

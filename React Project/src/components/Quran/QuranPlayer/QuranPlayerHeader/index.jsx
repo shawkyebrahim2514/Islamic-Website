@@ -1,41 +1,39 @@
-import { useState } from 'react'
-import QuranPagesSelect from './QuranPagesSelect';
-import QuranSurahsSelect from './QuranSurahsSelect';
-import QuranRecitationsSelect from './QuranRecitationsSelect';
-import { Box, Drawer } from '@mui/material';
+import { memo, useCallback, useState } from 'react'
+import { Box, Container } from '@mui/material';
 import SettingsIcon from '@mui/icons-material/Settings';
+import QuranPlayerDrawer from './QuranPlayerDrawer';
 
-function QuranPlayerHeader() {
-    // Page and recitation state is managed in the context reducer (QuranPlayerReducer.js)
-    const [surahNumber, setSurahNumber] = useState(1);
+function QuranPlayerHeader({ containerMaxWidth }) {
     const [settingsOpened, setSettingsOpend] = useState(false);
-    const toggleDrawer = (open) => setSettingsOpend(open);
+    const toggleDrawer = useCallback((open) => {
+        setSettingsOpend(open);
+    }, []);
 
     return (
         <Box component='header' sx={{
             py: 1,
             backgroundColor: 'quranPlayer.main',
-            display: 'flex',
-            justifyContent: 'center',
+            filter: 'drop-shadow(0px 2px 8px #170f052e)'
         }}>
-            <SettingsIcon
-                fontSize='large'
-                onClick={() => toggleDrawer(true)}
-                sx={{
-                    color: 'quranPlayer.contrastText',
-                    cursor: 'pointer',
-                }} />
-            <Drawer
-                anchor={'right'}
-                open={settingsOpened}
-                onClose={() => toggleDrawer(false)}
-            >
-                <QuranPagesSelect setSurahNumber={setSurahNumber} />
-                <QuranSurahsSelect surahNumber={surahNumber} setSurahNumber={setSurahNumber} />
-                <QuranRecitationsSelect />
-            </Drawer>
+            <Container maxWidth={containerMaxWidth} sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}>
+                <SettingsIcon
+                    fontSize='large'
+                    onClick={() => toggleDrawer(true)}
+                    sx={{
+                        color: 'quranPlayer.contrastText',
+                        cursor: 'pointer',
+                    }} />
+
+                <QuranPlayerDrawer
+                    settingsOpened={settingsOpened}
+                    toggleDrawer={toggleDrawer} />
+            </Container>
         </Box>
     )
 }
 
-export default QuranPlayerHeader
+export default memo(QuranPlayerHeader);

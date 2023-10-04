@@ -6,7 +6,12 @@ import KeyboardDoubleArrowLeftRoundedIcon from '@mui/icons-material/KeyboardDoub
 
 export default function HomeBodySection({ data, index }) {
     return (
-        <Box component='section' sx={{ py: 8, backgroundColor: index % 2 ? 'primary.contrastText' : 'primary.light' }}>
+        <Box
+            component='section'
+            sx={{
+                py: 8,
+                backgroundColor: index % 2 ? 'transparent' : 'primary.light'
+            }}>
             <Container maxWidth='lg' >
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
@@ -14,18 +19,38 @@ export default function HomeBodySection({ data, index }) {
                             component='img'
                             src={data.imageSrc}
                             alt={data.imageAlt}
-                            sx={{ width: '100%', filter: 'drop-shadow(2px 2px 2px #170f052e)', maxHeight: '300px', width: 'auto', display: 'block', margin: 'auto' }} />
+                            sx={{
+                                filter: 'drop-shadow(2px 2px 2px #170f052e)',
+                                maxHeight: '300px',
+                                width: {
+                                    xs: '240px',
+                                    md: '300px',
+                                },
+                                display: 'block',
+                                margin: 'auto'
+                            }} />
                     </Grid>
+
                     <Grid item container rowSpacing={3} xs={12} md={8} sx={{
                         justifyContent: 'center',
                         alignItems: 'center',
                         alignContent: 'center',
                     }}>
                         <Grid item xs={12}>
-                            <Typography className='ayah-font' variant='h4' sx={{ textAlign: 'center' }}>{data.description}</Typography>
+                            <Typography
+                                sx={{
+                                    textAlign: 'center',
+                                    lineHeight: '1.7',
+                                    fontSize: '1.8rem',
+                                }}>
+                                {data.description}
+                            </Typography>
                         </Grid>
+
                         <Grid item xs={12} sx={{ textAlign: 'center' }}>
-                            <Link to={data.targetURL}>
+                            <Link to={data.targetURL} sx={{
+                                width: 'fit-content',
+                            }}>
                                 <Button
                                     endIcon={<KeyboardDoubleArrowLeftRoundedIcon sx={{ mr: 2 }} />}
                                     size="large"

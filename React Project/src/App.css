@@ -9,30 +9,21 @@
     /* Legacy iOS */
 }
 
-.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
 body {
     direction: rtl;
-}
-
-img {
-    width: 100px;
+    /* // resize the background-image */
+    background-image: url('../public/svg/background-pattern.svg');
+    background-repeat: repeat;
+    background-size: 50%;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 *  {
-    font-family: 'Tajawal', sans-serif !important;
+    font-family: 'system-ui', sans-serif !important;
 }
 
 a {
     text-decoration: none;
     color: inherit;
-    display: block;
-}
-
-.ayah-font {
-    font-family: "system-ui", sans-serif !important;
-    line-height: 1.8 !important;
 }

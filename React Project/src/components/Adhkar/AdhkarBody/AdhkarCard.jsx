@@ -1,10 +1,9 @@
-import { useCallback } from 'react'
-import Box from '@mui/material/Box';
+import { memo, useCallback } from 'react'
 import Paper from '@mui/material/Paper';
 import { Typography } from '@mui/material';
 
 
-export default function AdhkarCard({ cardData, isChosen, setChosenAdhkar }) {
+function AdhkarCard({ cardData, isChosen, setChosenAdhkar }) {
     const handleClick = useCallback(() => {
         setChosenAdhkar(cardData);
     }, []);
@@ -31,3 +30,5 @@ export default function AdhkarCard({ cardData, isChosen, setChosenAdhkar }) {
         </Paper>
     )
 }
+
+export default memo(AdhkarCard)

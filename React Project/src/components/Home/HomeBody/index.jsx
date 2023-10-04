@@ -1,11 +1,12 @@
-import React from 'react'
 import HomeBodySections from './HomeBodySections'
+import { Box } from '@mui/material'
+import HijriCalendarSection from './HijriCalendarSection'
 
 export default function index() {
     return (
-        <main>
-            {/* Add the Hijri calendar section */}
+        <Box component='main'>
+            <HijriCalendarSection />
             <HomeBodySections />
-        </main>
+        </Box>
     )
 }

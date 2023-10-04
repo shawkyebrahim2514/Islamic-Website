@@ -1,6 +1,7 @@
 import { memo } from 'react'
 import AdhkarCard from './AdhkarCard'
 import { Box, Container, Grid } from '@mui/material'
+import { v4 as uuid } from 'uuid'
 
 function AdhkarCards({ data, chosenAdhkar, setChosenAdhkar }) {
     return (
@@ -8,11 +9,9 @@ function AdhkarCards({ data, chosenAdhkar, setChosenAdhkar }) {
             <Container maxWidth="lg">
                 <Grid container spacing={2}>
                     {data.map((item) => {
-                        console.log(item)
                         return (
-                            <Grid item xs={12} sm={6} md={4} lg={3} key={item} >
+                            <Grid item xs={12} sm={6} md={4} lg={3} key={uuid()} >
                                 <AdhkarCard
-                                    key={item}
                                     cardData={item}
                                     isChosen={item === chosenAdhkar}
                                     setChosenAdhkar={setChosenAdhkar} />

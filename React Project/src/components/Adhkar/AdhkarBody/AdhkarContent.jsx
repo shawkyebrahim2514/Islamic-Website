@@ -1,8 +1,9 @@
 import { Box, Container, Typography } from '@mui/material';
 import AdhkarContentSection from './AdhkarContentSection'
 import { v4 as uuid } from 'uuid';
+import { memo } from 'react';
 
-export default function AdhkarContent({ content }) {
+function AdhkarContent({ content }) {
     return (
         <Box sx={{
             py: 2
@@ -10,7 +11,7 @@ export default function AdhkarContent({ content }) {
             {content ? content.map((item, index) => {
                 return (
                     <Box component='section' key={uuid()} sx={{
-                        backgroundColor: index % 2 === 0 ? 'primary.light' : 'white',
+                        backgroundColor: index % 2 === 0 ? 'primary.light' : 'primary.contrastText',
                         py: 4,
                     }}>
                         <Container maxWidth="lg" sx={{
@@ -18,6 +19,7 @@ export default function AdhkarContent({ content }) {
                             justifyContent: 'center',
                             alignItems: 'center',
                             flexDirection: 'column',
+                            gap: '1rem',
                         }}>
                             <AdhkarContentSection data={item} />
                         </Container>
@@ -34,3 +36,5 @@ export default function AdhkarContent({ content }) {
         </Box >
     )
 }
+
+export default memo(AdhkarContent);

@@ -1,11 +1,15 @@
 import QuranPlayer from '../components/Quran/QuranPlayer'
 import QuranPageHeader from '../components/Quran/QuranPageHeader'
+import { Helmet } from 'react-helmet'
 
 export default function QuranPage() {
     return (
-        <div>
+        <>
+            <Helmet>
+                <title>Quran Player</title>
+            </Helmet>
             <QuranPageHeader />
             <QuranPlayer />
-        </div>
+        </>
     )
 }

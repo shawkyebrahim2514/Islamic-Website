@@ -10,10 +10,17 @@ const previousPage = () => {
     }
 }
 
-const setPage = (page) => {
+const setCurrentPage = (page) => {
     return {
-        type: 'setPage',
+        type: 'setCurrentPage',
         payload: +page
+    }
+}
+
+const setCurrentSurahNumber = (surahNumber) => {
+    return {
+        type: 'setCurrentSurahNumber',
+        payload: +surahNumber
     }
 }
 
@@ -60,7 +67,8 @@ const setRecitation = (receiter) => {
 export {
     nextPage,
     previousPage,
-    setPage,
+    setCurrentPage,
+    setCurrentSurahNumber,
     setActiveAyah,
     setEndAyahPage,
     nextActiveAyah,

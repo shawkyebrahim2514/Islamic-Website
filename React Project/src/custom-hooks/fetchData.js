@@ -4,8 +4,12 @@ const useFetch = ({ url }, dependencies) => {
     const [data, setData] = useState(null);
     const [status, setStatus] = useState("loading"); // loading, error, success
     const [error, setError] = useState(null);
-
+    
     useEffect(() => {
+        if (!url) {
+            setStatus("error");
+            return;
+        }
         setStatus("loading");
         async function getData() {
             try {
@@ -31,5 +35,4 @@ const isLoading = (status) => status === "loading";
 const isSuccess = (status) => status === "success";
 const isError = (status) => status === "error";
 
-export default useFetch;
-export { isLoading, isSuccess, isError };
+export { useFetch, isLoading, isSuccess, isError };

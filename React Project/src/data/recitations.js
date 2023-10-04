@@ -1,19 +1,4 @@
-const requestAyahAudioQuranComAPI = async (recitationId, ayahNumber) => {
-    const baseAudioURL = "https://verses.quran.com/";
-    const url = `https://api.quran.com/api/v4/recitations/${recitationId}/by_ayah/${ayahNumber}`;
-    try {
-        const response = await fetch(url);
-        const json = await response.json();
-        const pathAudio = json.audio_files[0].url;
-        if (pathAudio.startsWith("//")) {
-            return pathAudio;
-        } else {
-            return `${baseAudioURL}${json.audio_files[0].url}`;
-        }
-    } catch (error) {
-        return new Error(error);
-    }
-}
+import { requestAyahAudioQuranComAPI } from "../apis";
 
 const recitations = {
     AbdulBaset_Mujawwad: {
@@ -46,6 +31,11 @@ const recitations = {
         style: null,
         getAyahAudioURL: (ayahNumber) => requestAyahAudioQuranComAPI(6, ayahNumber),
     },
+    Husary_Muallim: {
+        name: "محمود خليل الحصري",
+        style: 'معلم',
+        getAyahAudioURL: (ayahNumber) => requestAyahAudioQuranComAPI(12, ayahNumber),
+    },
     Alafasy: {
         name: "مشاري راشد العفاسي",
         style: null,
@@ -70,11 +60,6 @@ const recitations = {
         name: "محمد الطبلاوي",
         style: null,
         getAyahAudioURL: (ayahNumber) => requestAyahAudioQuranComAPI(11, ayahNumber),
-    },
-    Husary_Muallim: {
-        name: "محمود خليل الحصري",
-        style: 'معلم',
-        getAyahAudioURL: (ayahNumber) => requestAyahAudioQuranComAPI(12, ayahNumber),
     },
 }
 

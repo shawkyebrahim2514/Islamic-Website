@@ -1,12 +1,19 @@
+import { Suspense, lazy } from 'react';
 import './App.css';
 import CommonFooter from './components/CommonFooter';
 import CommonNavbar from './components/CommonNavbar';
-import AdhkarPage from './pages/AdhkarPage';
-import HijriCalendarPage from './pages/HijriCalendarPage';
-import HomePage from './pages/HomePage';
-import QuranPage from './pages/QuranPage';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Box } from '@mui/material';
+import SpinnerLoading from './components/SpinnerLoading';
+import NotFound from './components/NotFound';
+
+const AdhkarPage = lazy(() => import('./pages/AdhkarPage'));
+const HijriCalendarPage = lazy(() => import('./pages/HijriCalendarPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const QuranPage = lazy(() => import('./pages/QuranPage'));
+const HijriCalendarByDatePage = lazy(() => import('./pages/HijriCalendarByDatePage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 const theme = createTheme({
   palette: {
@@ -15,10 +22,6 @@ const theme = createTheme({
       light: '#fff3ea',
       contrastText: '#fff',
     },
-    // secondary: {
-    //   main: '#b9864d',
-    //   contrastText: '#fff',
-    // },
     quranPlayer: {
       main: '#444',
       light: '#e5e5e5',
@@ -31,15 +34,26 @@ function App() {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <CommonNavbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/quran" element={<QuranPage />} />
-          <Route path="/hijri-calendar" element={<HijriCalendarPage />} />
-          <Route path="/adhkar" element={<AdhkarPage />} />
-          <Route path="/about" element={<h1>Shawky Ebrahim Ahmed</h1>} />
-        </Routes>
-        <CommonFooter />
+        <Box sx={{
+          '*::selection': {
+            backgroundColor: 'primary.main',
+            color: 'primary.contrastText',
+          }
+        }}>
+          <CommonNavbar />
+          <Suspense fallback={<SpinnerLoading />}>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/quran" element={<QuranPage />} />
+              <Route path="/hijri-calendar" element={<HijriCalendarPage />} />
+              <Route path="/hijri-calendar/:date" element={<HijriCalendarByDatePage />} />
+              <Route path="/adhkar" element={<AdhkarPage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+          <CommonFooter />
+        </Box>
       </ThemeProvider>
     </BrowserRouter>
   );
